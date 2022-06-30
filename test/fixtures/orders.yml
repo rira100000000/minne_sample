@@ -3,17 +3,17 @@
 one:
   title: MyOrder
   body: Order Details
-  user: one
+  user_id: 1
   created_at: <%= 10.minutes.ago %>
 
 two:
   title: MyOrder2
   body: Order Details2
-  user: two
+  user_id: 2
   created_at: <%= 3.years.ago %>
   
 most_recent:
   title: MyOrder3
   body: Order Details3
-  user: most_recent
+  user_id: 3
   created_at: <%= 1.minutes.ago %>

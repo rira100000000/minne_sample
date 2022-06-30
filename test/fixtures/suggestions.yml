@@ -2,12 +2,12 @@
 
 one:
   title: MyText
-  dody: MyText
+  body: MyText
   order_id: 1
-  user: one
+  user_id: 2
 
 two:
   title: MyText
-  dody: MyText
+  body: MyText
   order_id: 1
-  user: two
+  user_id: 3

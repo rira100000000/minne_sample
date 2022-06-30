@@ -3,9 +3,9 @@
 one:
   content: MyText
   user: one
-  order_id: one
+  suggestion_id: 1
 
 two:
   content: MyText
   user: two
-  order_id: two
+  suggestion_id: 2
