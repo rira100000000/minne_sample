@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyOrder
+  body: Order Details
+  user: one
+  created_at: <%= 10.minutes.ago %>
+
+two:
+  title: MyOrder2
+  body: Order Details2
+  user: two
+  created_at: <%= 3.years.ago %>
+  
+most_recent:
+  title: MyOrder3
+  body: Order Details3
+  user: most_recent
+  created_at: <%= 1.minutes.ago %>
