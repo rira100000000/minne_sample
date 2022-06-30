@@ -10,6 +10,23 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @orders = @user.orders.paginate(page: params[:page])
+    @recieved_orders = Order.where reciever: @user.id
+    @suggestions = Suggestion.where user_id: @user.id
+    
+    #提案中の依頼から既に受注済み依頼を除く処理
+    order_ids =[]
+    @recieved_orders.each do |ordar|
+      order_ids << ordar.id
+    end
+    
+    suggestion_order_ids =[]
+    @suggestions.each do |suggestion|
+      suggestion_order_ids << suggestion.order_id if !order_ids.include?(suggestion.order_id)
+    end
+    
+    @suggestion_orders = Order.where id: suggestion_order_ids
+    @my_orders = Order.where user_id: @user.id
+
   end
 
   def new

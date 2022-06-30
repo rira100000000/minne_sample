@@ -1,42 +1,26 @@
 <% provide(@user) %>
 <br>
 <%= @user.name %>
-<% @recieved_orders = Order.where reciever: @user.id %>
 <div class="recieved_orders">
   <% if  current_user?(@user) %>
     <h3>受注済み依頼 (<%= @recieved_orders.count %>)</h3>
     <ol class="recieved_orders">
-      <% order_ids =[] %>
       <% @recieved_orders.each do |ordar| %>
-        <%= ordar.title%><%= ordar.body%>
-        <% order_ids << ordar.id %>
+        <%= link_to ordar.title ,ordar %><br>
       <% end %>
     </ol>
     
-    
-    <% @suggestions = Suggestion.where user_id: @user.id %>
-    <% suggestion_order_ids =[] %>
-    <% @suggestions.each do |suggestion| %>
-    <%# まだ受注してない提案のみ抽出 %>
-      <% suggestion_order_ids << suggestion.order_id if !order_ids.include?(suggestion.order_id) %>
-    <% end %>
-
-      
-      
-    <% @suggestion_orders = Order.where id: suggestion_order_ids %>
     <h3>提案中の依頼 (<%= @suggestion_orders.count %>)</h3>
     <ol class="suggestions">
       <% @suggestion_orders.each do |ordar| %>
-        <%= ordar.title%><%= ordar.body%><br>
+        <%= link_to ordar.title ,ordar %><br>
       <% end %>
     </ol>
 
-    
-    <% @orders = Order.where user_id: @user.id %>
-    <h3>自分の出した依頼 (<%= @orders.count %>)</h3>
+    <h3>自分の出した依頼 (<%= @my_orders.count %>)</h3>
     <ol class="my_orders">
-      <% @orders.each do |ordar| %>
-        <%= ordar.title%><%= ordar.body%><br>
+      <% @my_orders.each do |ordar| %>
+        <%= link_to ordar.title ,ordar %><br>
       <% end %>
     </ol>
   <% end %>
