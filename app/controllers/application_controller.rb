@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
+  include ApplicationHelper
   
   # 記憶したURL（もしくはデフォルト値）にリダイレクト
   def redirect_back_or(default)
@@ -32,4 +33,10 @@ class ApplicationController < ActionController::Base
   end
   
   helper_method :logged_in_user
+  
+  def display_image(image)
+    image.variant(resize_to_limit: [150, 150])
+  end
+  
+  helper_method :display_image
 end

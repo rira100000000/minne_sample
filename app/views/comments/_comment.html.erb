@@ -1,2 +1,8 @@
-<%= User.find(comment.user_id).name %>
+<% user = User.find(comment.user_id)%>
+<%= link_to user.name ,user %>
+<% if comment.images.attached? %>
+  <% comment.images.each do |image| %>
+    <%= link_to (image_tag display_image(image)) , image%>
+  <% end %>
+<% end %>
 <%= comment.content %><br>

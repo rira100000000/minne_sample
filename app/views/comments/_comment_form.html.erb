@@ -6,7 +6,7 @@
       <%= f.text_area :body, class: 'form-control', placeholder: "コメントを入力してください" %>
       </div>
     <span class="image">
-      <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+      <%= f.file_field :images, multiple: true,accept: "image/jpeg,image/gif,image/png" %>
     </span>
     <%= f.submit '送信', class: "btn btn-primary" %>
   <% end %>
@@ -15,4 +15,3 @@
   ログインしてコメントしましょう
 </div>
 <% end %>
-  

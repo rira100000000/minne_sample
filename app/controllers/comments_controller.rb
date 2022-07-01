@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
   def create
     @suggestion = Suggestion.find(comment_suggestion_id)
-    @comment = @suggestion.comments.new
+    @comment = @suggestion.comments.build params.require(:comment).permit(:content, images: [])
     @comment.content = comment_body
     @comment.user_id = current_user.id
+    
     if @comment.save
       flash[:success] = "コメントしました"
       redirect_to request.referer
@@ -22,6 +23,10 @@ class CommentsController < ApplicationController
     end
     def comment_suggestion_id
        params.require(:comment)[:suggestion_id]
+    end
+    
+    def comment_params
+      params.require(:comment).permit(:content, images: [])
     end
   
 end
