@@ -17,12 +17,15 @@ class OrdersController < ApplicationController
   end
   
   def create
-    @order = Order.new(title: order_title,
-                      body: order_body,
-                      user_id: current_user.id)
+    @user = User.find(current_user.id)
+    @order = @user.orders.build(order_params)
+    @order.title = order_title
+    @order.body = order_body
+    @order.user_id = current_user.id
+    
     if @order.save
       flash[:success] = "依頼を作成しました"
-      redirect_to request.referer
+      redirect_to @order
     else
       flash[:danger] = "依頼作成に失敗しました"
       redirect_to request.referer
@@ -37,4 +40,9 @@ class OrdersController < ApplicationController
     def order_body
       params.require(:order)[:body]
     end
+    
+    def order_params
+      params.require(:order).permit(:title,:body, images: [])
+    end
+    
 end

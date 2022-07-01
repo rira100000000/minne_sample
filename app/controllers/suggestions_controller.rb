@@ -8,13 +8,16 @@ class SuggestionsController < ApplicationController
   
   def create
     @order = Order.find(suggestion_order_id)
-    @suggestion =@order.suggestions.build(title: suggestion_title,
-                      body: suggestion_body,
-                      order_id: suggestion_order_id,
-                      user_id: current_user.id)
+    @suggestion =@order.suggestions.build(suggestion_params)
+    
+    @suggestion.title = suggestion_title
+    @suggestion.body =  suggestion_body
+    @suggestion.order_id = suggestion_order_id
+    @suggestion.user_id= current_user.id
+
     if @suggestion.save
      flash[:success] = "提案を送信しました"
-      redirect_to request.referer
+      redirect_to @suggestion
     else
       flash[:danger] = "提案送信に失敗しました"
       redirect_to request.referer
@@ -22,7 +25,10 @@ class SuggestionsController < ApplicationController
   end
   
   private
-  
+    
+    def suggestion_params
+      params.require(:suggestion).permit(:title,:body, images: [])
+    end
     def suggestion_title
       params.require(:suggestion)[:title]
     end
