@@ -1,0 +1,13 @@
+<%= form_with(model: @suggestion, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: @suggestion %>
+  <div class='title_form'>
+    <%= f.hidden_field :order_id, value: @order.id %>
+    <%= f.text_field :title,placeholder: "タイトルを入力してください",class: 'form-control' %>
+  </div>
+  <div class='body_form'>
+    <%= f.text_area :body,placeholder: "詳細な提案の内容を記入してください", class: 'form-control' %>
+  <span class="image">
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+  </span>
+  <%= f.submit '提案を送信', class: "btn btn-primary" %>
+<% end %>

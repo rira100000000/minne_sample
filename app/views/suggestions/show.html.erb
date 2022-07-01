@@ -1,6 +1,10 @@
-<%= link_to @order.title ,@order %>
+<div class='back_link'>
+  <%= link_to @order.title ,@order %>
+</div>
 <h1><%= @suggestion.title %></h1>
 <h2><%= @suggestion.body %></h2>
 
+
 <h3>コメント</h3>
+<%= render '/comments/comment_form' %>
 <%= render @suggestion.comments %>

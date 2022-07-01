@@ -1,23 +1,22 @@
 <% provide(@user) %>
-<br>
 <%= @user.name %>
 <div class="recieved_orders">
   <% if  current_user?(@user) %>
-    <h3>受注済み依頼 (<%= @recieved_orders.count %>)</h3>
+    <h3><%= @user.name %>さんの受注済み依頼 (<%= @recieved_orders.count %>)</h3>
     <ol class="recieved_orders">
       <% @recieved_orders.each do |ordar| %>
         <%= link_to ordar.title ,ordar %><br>
       <% end %>
     </ol>
     
-    <h3>提案中の依頼 (<%= @suggestion_orders.count %>)</h3>
+    <h3><%= @user.name %>さんの提案中の依頼 (<%= @suggestion_orders.count %>)</h3>
     <ol class="suggestions">
       <% @suggestion_orders.each do |ordar| %>
         <%= link_to ordar.title ,ordar %><br>
       <% end %>
     </ol>
 
-    <h3>自分の出した依頼 (<%= @my_orders.count %>)</h3>
+    <h3> <%= @user.name %>さんの依頼 (<%= @my_orders.count %>)</h3>
     <ol class="my_orders">
       <% @my_orders.each do |ordar| %>
         <%= link_to ordar.title ,ordar %><br>
