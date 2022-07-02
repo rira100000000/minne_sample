@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :orders
   resources :suggestions
   resources :comments ,only: [:create, :destroy]
-  
+  get  'my_orders',  to: 'orders#my_orders'
+
 end

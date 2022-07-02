@@ -12,6 +12,8 @@ class UsersController < ApplicationController
     @orders = @user.orders.paginate(page: params[:page])
     @recieved_orders = Order.where reciever: @user.id
     @suggestions = Suggestion.where user_id: @user.id
+    @image = @user.image
+    @profile = @user.profile
     
     #提案中の依頼から既に受注済み依頼を除く処理
     order_ids =[]
@@ -46,6 +48,7 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    @image = @user.image
   end
   
   def update
@@ -67,7 +70,8 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation,
+                                   :image, :profile)
     end
     
 end

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy]
+  before_action :logged_in_user, only: [:edit, :update, :destroy,:my_orders]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   def index
@@ -30,6 +30,30 @@ class OrdersController < ApplicationController
       flash[:danger] = "依頼作成に失敗しました"
       redirect_to request.referer
     end
+  end
+  
+  def my_orders
+    @user = User.find(current_user.id)
+    @orders = @user.orders.paginate(page: params[:page])
+    @recieved_orders = Order.where reciever: @user.id
+    @suggestions = Suggestion.where user_id: @user.id
+    @image = @user.image
+    @profile = @user.profile
+    
+    #提案中の依頼から既に受注済み依頼を除く処理
+    order_ids =[]
+    @recieved_orders.each do |ordar|
+      order_ids << ordar.id
+    end
+    
+    suggestion_order_ids =[]
+    @suggestions.each do |suggestion|
+      suggestion_order_ids << suggestion.order_id if !order_ids.include?(suggestion.order_id)
+    end
+    
+    @suggestion_orders = Order.where id: suggestion_order_ids
+    @my_orders = Order.where user_id: @user.id
+
   end
   
   private

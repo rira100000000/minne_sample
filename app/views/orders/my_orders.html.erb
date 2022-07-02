@@ -1,0 +1,40 @@
+<% provide(@user) %>
+<%= @user.name %>
+<div class='content'>
+  <div class='userbox'>
+    <div class='userbox__top'>
+      <div class='userbox__top__left'>
+        <div class='userbox__top__left__icon'>
+          <% if @image.present? %>
+            <%= image_tag @image.url, class: "user_icon" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="recieved_orders">
+  <% if  current_user?(@user) %>
+    <h3><%= @user.name %>さんの受注済み依頼 (<%= @recieved_orders.count %>)</h3>
+    <ol class="recieved_orders">
+      <% @recieved_orders.each do |ordar| %>
+        <%= link_to ordar.title ,ordar %><br>
+      <% end %>
+    </ol>
+    
+    <h3><%= @user.name %>さんの提案中の依頼 (<%= @suggestion_orders.count %>)</h3>
+    <ol class="suggestions">
+      <% @suggestion_orders.each do |ordar| %>
+        <%= link_to ordar.title ,ordar %><br>
+      <% end %>
+    </ol>
+
+    <h3> <%= @user.name %>さんの依頼 (<%= @my_orders.count %>)</h3>
+    <ol class="my_orders">
+      <% @my_orders.each do |ordar| %>
+        <%= link_to ordar.title ,ordar %><br>
+      <% end %>
+    </ol>
+  <% end %>
+</div>

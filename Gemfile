@@ -10,7 +10,8 @@ gem 'bootstrap-will_paginate'
 gem 'faker'
 gem 'image_processing'
 gem 'mini_magick'
-
+gem 'carrierwave'
+gem 'jquery-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.5'
