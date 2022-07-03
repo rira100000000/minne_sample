@@ -1,7 +1,15 @@
 <div class='back_link'>
   <%= link_to @order.title ,@order %>
 </div>
-<h1><%= @suggestion.title %></h1>
+<div class='suggestion_title'>
+  <% user = User.find(@suggestion.user_id)%>
+  <% if user.image.present? %>
+  <h1><%= link_to image_tag(user.image.url, class: "user_icon") , user %><%= @suggestion.title %></h1>
+  <% end %>
+  <% if user.image.present? %>
+  <h1<%= @suggestion.title %></h1>
+  <% end %>
+</div>
 <% if @suggestion.images.attached? %>
   <% @suggestion.images.each do |image| %>
     <%= link_to (image_tag display_image(image)) , image%>
