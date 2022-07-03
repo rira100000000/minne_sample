@@ -1,7 +1,7 @@
 <li>
-  <% @image =user.image %>
-  <% if @image.present? %>
-    <%= image_tag @image.url, class: "user_icon" %>
+  <% @avatar =user.avatar %>
+  <% if @avatar.present? %>
+    <%= image_tag @avatar, class: "user_icon" %>
   <% else %>
     <%= image_tag '/uploads/user/image/upper_body.jpg', class: "user_icon" %>
   <% end %>

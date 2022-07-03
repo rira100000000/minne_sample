@@ -1,8 +1,8 @@
 <% provide(@user) %>
 <%= @user.name %>
 
-<% if @image.present? %>
-  <%= image_tag @image.url, class: "user_icon" %>
+<% if @avatar.present? %>
+  <%= image_tag @avatar, class: "user_icon" %>
 <% end %>
 
 <div class="recieved_orders">

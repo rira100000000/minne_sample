@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 2022_07_01_093330) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "remember_digest"
     t.boolean "admin", default: false
-    t.string "image"
     t.text "profile"
   end
 

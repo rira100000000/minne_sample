@@ -12,8 +12,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   validates :profile, length: { maximum: 300 }
-  mount_uploader :image, ImageUploader
-  
+  has_one_attached :avatar
   
 # 渡された文字列のハッシュ値を返す
   def User.digest(string)
@@ -42,6 +41,5 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
-  
   
 end

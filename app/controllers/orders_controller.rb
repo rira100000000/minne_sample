@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
     @orders = @user.orders.paginate(page: params[:page])
     @recieved_orders = Order.where reciever: @user.id
     @suggestions = Suggestion.where user_id: @user.id
-    @image = @user.image
+    @avatar = @user.avatar
     @profile = @user.profile
     
     #提案中の依頼から既に受注済み依頼を除く処理

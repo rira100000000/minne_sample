@@ -1,6 +1,17 @@
-<%= form_with(model: @user, local: true) do |f| %>
-  <%= render 'shared/error_messages', object: @user %>
-
+<%= javascript_pack_tag 'icon_loader',media: 'all'%>
+<%= render 'shared/error_messages', object: @user %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @user, local: true) do |f| %>
+      <div class='account-page__inner--icon'>
+        <div class='account-page__inner--icon__label'>
+        </div>
+        <div class='account-page__inner--icon__input'>
+          <%= image_tag '/uploads/user/image/upper_body.jpg', class: 'account-page__inner--icon__input__image', width: '100%' %>
+          <div class='account-page__inner--icon__input__image2'></div>
+          <%= f.file_field :avatar, class: 'account-page__inner--icon__input__btn', id: 'upload-icon' %>
+        </div>
+      </div>
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
 

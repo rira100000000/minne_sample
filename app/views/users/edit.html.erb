@@ -10,10 +10,10 @@
         <div class='account-page__inner--icon__label'>
         </div>
         <div class='account-page__inner--icon__input'>
-          <% if @image.present? %>
-            <%= image_tag @image.url, class: 'account-page__inner--icon__input__image', width: '100%' %>
+          <% if @avatar.present? %>
+            <%= image_tag @avatar, class: 'account-page__inner--icon__input__image', width: '100%' %>
             <div class='account-page__inner--icon__input__image2'></div>
-            <%= f.file_field :image, class: 'account-page__inner--icon__input__btn', id: 'upload-icon' %>
+            <%= f.file_field :avatar, class: 'account-page__inner--icon__input__btn', id: 'upload-icon' %>
           <% end %>
         </div>
       </div>
