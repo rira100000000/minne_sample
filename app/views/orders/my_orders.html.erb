@@ -1,18 +1,9 @@
 <% provide(@user) %>
 <%= @user.name %>
-<div class='content'>
-  <div class='userbox'>
-    <div class='userbox__top'>
-      <div class='userbox__top__left'>
-        <div class='userbox__top__left__icon'>
-          <% if @image.present? %>
-            <%= image_tag @image.url, class: "user_icon" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+<% if @image.present? %>
+  <%= image_tag @image.url, class: "user_icon" %>
+<% end %>
 
 <div class="recieved_orders">
   <% if  current_user?(@user) %>
