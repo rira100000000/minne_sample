@@ -46,7 +46,7 @@ class UserTest < ActiveSupport::TestCase
   
   test "associated orders should be destroyed" do
     @user.save
-    @user.orders.create!(body: "Lorem ipsum")
+    @user.orders.create!(title: 'test',body: "Lorem ipsum")
     assert_difference 'Order.count', -1 do
       @user.destroy
     end

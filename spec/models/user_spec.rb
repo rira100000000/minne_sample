@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  
+  # 有効なファクトリを持つこと
+  it "has a valid factory" do
+    expect(FactoryBot.build(:user)).to be_valid
+  end
+  
   # 姓、名、メール、パスワードがあれば有効な状態であること
   it "is valid with a first name, last name, email, and password" do
     user = User.new(name: "Aaron",
@@ -13,7 +19,7 @@ RSpec.describe User, type: :model do
   
   # 名がなければ無効な状態であること
   it "is invalid without a first name" do
-    user = User.new(name: nil)
+    user = FactoryBot.build(:user, name: nil)
     user.valid?
     expect(user.errors[:name]).to include("can't be blank")
   end

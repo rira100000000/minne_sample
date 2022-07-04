@@ -3,7 +3,7 @@ require 'test_helper'
 class OrderTest < ActiveSupport::TestCase
   def setup
     @user = users(:michael)
-    @order = @user.orders.build(body: "Lorem ipsum")
+    @order = @user.orders.build(title: 'test',body: "Lorem ipsum")
 
   end
 
