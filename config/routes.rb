@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'users/new'
   get 'portfolio/home'
+  get 'users/index'
   root 'portfolio#home'
   get  '/signup',  to: 'users#new'
   resources :users

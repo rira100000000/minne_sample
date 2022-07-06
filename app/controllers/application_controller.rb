@@ -22,6 +22,15 @@ class ApplicationController < ActionController::Base
     end
   end
   
+    # ログイン済みユーザーかどうか確認
+  def not_logged_in_user
+    if logged_in?
+      flash[:danger] = "you are already logged in."
+      redirect_to '/my_orders'
+    end
+  end
+
+  
   # 正しいユーザーかどうか確認
   def correct_user
     @user = User.find(params[:id])
