@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_01_093330) do
+ActiveRecord::Schema.define(version: 2022_07_07_033951) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2022_07_01_093330) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "order_tags", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id", "tag_id"], name: "index_order_tags_on_order_id_and_tag_id", unique: true
+    t.index ["order_id"], name: "index_order_tags_on_order_id"
+    t.index ["tag_id"], name: "index_order_tags_on_tag_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.text "title"
     t.text "body"
@@ -64,6 +74,12 @@ ActiveRecord::Schema.define(version: 2022_07_01_093330) do
     t.index ["user_id"], name: "index_suggestions_on_user_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -78,6 +94,8 @@ ActiveRecord::Schema.define(version: 2022_07_01_093330) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "suggestions"
   add_foreign_key "comments", "users"
+  add_foreign_key "order_tags", "orders"
+  add_foreign_key "order_tags", "tags"
   add_foreign_key "orders", "users"
   add_foreign_key "suggestions", "users"
 end

@@ -3,17 +3,20 @@ class OrdersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   def index
-     @orders = Order.paginate(page: params[:page])
+    @orders = Order.paginate(page: params[:page])
+    @tag_list=Tag.all
   end
   
   def show
     @order = Order.find(params[:id])
     @suggestion= Suggestion.new
+    @order_tags = @order.tags
   end
   
   def new
     logged_in_user
     @order =Order.new
+    @tag_list=@order.tags.pluck(:name).join(',')
   end
   
   def create
@@ -22,8 +25,10 @@ class OrdersController < ApplicationController
     @order.title = order_title
     @order.body = order_body
     @order.user_id = current_user.id
+    tag_list=params[:order][:name].split(',')
     
     if @order.save
+      @order.save_tag(tag_list)
       flash[:success] = "依頼を作成しました"
       redirect_to @order
     else

@@ -8,5 +8,10 @@
   <span class="image">
     <%= f.file_field :images, multiple: true, accept: "image/jpeg,image/gif,image/png" %>
   </span>
+  <div class="field">
+    <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+    <%= f.text_field :name,value: @tag_list,class:"form-control"%>
+  </div>
+  
   <%= f.submit '依頼送信', class: "btn btn-primary" %>
 <% end %>
