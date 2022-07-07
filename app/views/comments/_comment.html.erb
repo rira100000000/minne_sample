@@ -1,6 +1,6 @@
 <% user = User.find(comment.user_id)%>
-<% if user.image.present? %>
-  <%= image_tag user.image.url, class: "user_icon" %>
+<% if user.avatar.present? %>
+  <%= image_tag user.avatar, class: "user_icon" %>
 <% end %>
 <%= link_to user.name ,user %>
 <% if comment.images.attached? %>

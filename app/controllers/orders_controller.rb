@@ -10,8 +10,8 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @suggestion= Suggestion.new
-    @order_tags = @order.tags
-    @tag_list=Tag.all
+    @tag_list = @order.tags
+
   end
   
   def new

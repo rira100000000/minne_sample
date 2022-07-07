@@ -1,19 +1,24 @@
 # メインのサンプルユーザーを1人作成する
-User.create!(name:  "Example User",
+user = User.create!(name:  "Example User",
              email: "example@railstutorial.org",
              password:              "foobar",
              password_confirmation: "foobar",
-             admin: true)
+             admin: true,
+             )
+user.avatar.attach(io: File.open(Rails.root.join('app/assets/images/upper_body.jpg')),
+                  filename: 'upper_body.jpg')
 
 # 追加のユーザーをまとめて生成する
-30.times do |n|
+10.times do |n|
   name  = Faker::Name.name
   email = "example-#{n+1}@railstutorial.org"
   password = "password"
-  User.create!(name:  name,
+  user = User.create!(name:  name,
                email: email,
                password:              password,
                password_confirmation: password)
+  user.avatar.attach(io: File.open(Rails.root.join('app/assets/images/upper_body.jpg')),
+                    filename: 'upper_body.jpg')
 end
 
 Order.create!(id:  1,
@@ -38,6 +43,13 @@ Order.create!(id:  4,
              title: 'おしゃれな置時計が欲しい',
              body: 'ナチュラルな雰囲気でデスクに置けるサイズの時計を探しています。',
              user_id: 2
+             )
+             
+Order.create!(id:  5,
+             title: '陶器のペアグラスが欲しい',
+             body: '両親にプレゼントするためにペアグラスが欲しいです。',
+             user_id: 1,
+             status: 'inactive'
              )
 
              
@@ -68,6 +80,14 @@ Suggestion.create!(id: 4,
                   order_id: 4, 
                   user_id: 1
                   )
+
+Suggestion.create!(id: 5,
+                  title: '陶芸工房です',
+                  body: '写真の形のものでしたら制作できます。色などのお好みはありますか？', 
+                  order_id: 5, 
+                  user_id: 3
+                  )
+
                   
 Comment.create!(id: 1, 
                 content: '提案ありがとうございます。現在注文すると納期と金額はいくらぐらいになりますか？', 
@@ -92,3 +112,26 @@ Comment.create!(id: 4,
                 user_id: 1, 
                 suggestion_id: 1
                 )
+
+Tag.create!(id:1,
+            name: '陶器')
+
+OrderTag.create!(id:1,
+                tag_id:1,
+                order_id:5)
+
+Tag.create!(id:2,
+            name: 'ファッション')
+            
+Tag.create!(id:3,
+            name: '子供用')
+
+OrderTag.create!(id:2,
+                tag_id:2,
+                order_id:1)
+
+OrderTag.create!(id:3,
+                tag_id:3,
+                order_id:1)
+
+

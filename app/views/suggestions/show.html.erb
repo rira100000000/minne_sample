@@ -3,10 +3,10 @@
 </div>
 <div class='suggestion_title'>
   <% user = User.find(@suggestion.user_id)%>
-  <% if user.image.present? %>
-  <h1><%= link_to image_tag(user.image.url, class: "user_icon") , user %><%= @suggestion.title %></h1>
+  <% if user.avatar.present? %>
+  <h1><%= link_to image_tag(user.avatar, class: "user_icon") , user %><%= @suggestion.title %></h1>
   <% end %>
-  <% if user.image.present? %>
+  <% if user.avatar.present? %>
   <h1<%= @suggestion.title %></h1>
   <% end %>
 </div>
