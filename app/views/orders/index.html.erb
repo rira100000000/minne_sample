@@ -1,11 +1,13 @@
-<% @tag_list.each do |list|%>
-<%=list.name %>
-<%="(#{list.orders.count})" %><% end %>
+<%= render 'shared/tag_index' %>
 
 <%= link_to '新しい依頼を作成する','orders/new' %>
 <h2> 新着依頼 </h2>
  <% @orders.each do |order| %>
    <%= link_to order.title,order %>
-   <i class="fas fa-tag"><%= order.tags.map(&:name).join(', ') %></i><br>
+   <i class="tags">
+    <% order.tags.each do |tag|%>
+     <i class="tag"><%= link_to tag.name ,tags_show_path(tag_id: tag.id) %> </i>
+    <% end %>
+   </i><br>
  <% end %>
  
