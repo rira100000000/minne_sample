@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @suggestion= Suggestion.new
     @order_tags = @order.tags
+    @tag_list=Tag.all
   end
   
   def new

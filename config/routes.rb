@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   resources :suggestions
   resources :comments ,only: [:create, :destroy]
   get  'my_orders',  to: 'orders#my_orders'
-
+  get 'tags/show'
 end

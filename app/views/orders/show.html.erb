@@ -6,9 +6,10 @@
   <% end %>
 <% end %>
 <h2><%= @order.body %></h2>
-<% @order_tags.each do |tag| %>
-  <%=tag.name%><%="(#{tag.orders.count})" %>
-<% end %>
+
+<%= render 'shared/tag_index' %>
+
+
 <% if logged_in? %>
   <%= render '/suggestions/suggestion_form' %>
 <% else %>

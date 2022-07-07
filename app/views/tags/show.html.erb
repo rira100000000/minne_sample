@@ -1,0 +1,7 @@
+<%= link_to '新しい依頼を作成する','orders/new' %>
+<h2> タグ:<%= @tag.name%>で絞り込み中 </h2>
+ <% @orders.each do |order| %>
+   <%= link_to order.title,order %>
+   <i class="fas fa-tag"><%= order.tags.map(&:name).join(', ') %></i><br>
+ <% end %>
+ 
