@@ -38,6 +38,22 @@ class OrdersController < ApplicationController
     end
   end
   
+  def edit
+    @order = Order.find(params[:id])
+    @tag_list=@order.tags.pluck(:name).join(',')
+  end
+  
+  def update
+     @order = Order.find(params[:id])
+    if @order.update(order_params)
+      flash[:success] = "オーダーを更新しました"
+      redirect_to @order
+    else
+      flash[:danger] = "オーダー更新に失敗しました"
+      render 'edit'
+    end
+  end
+  
   def my_orders
     @user = User.find(current_user.id)
     @orders = @user.orders.paginate(page: params[:page])
@@ -62,6 +78,13 @@ class OrdersController < ApplicationController
 
   end
   
+  def upload_image
+      @image_blob = create_blob(params[:image])
+      respond_to do |format|
+        format.json { @image_blob.id }
+      end
+  end
+  
   private
     def order_title
       params.require(:order)[:title]
@@ -72,7 +95,18 @@ class OrdersController < ApplicationController
     end
     
     def order_params
-      params.require(:order).permit(:title,:body, images: [])
+    params.require(:order).permit(:title,:body).merge(images: uploaded_images)
+    end
+  
+    def uploaded_images
+      params[:order][:images].map{|id| ActiveStorage::Blob.find(id)} if params[:order][:images]
+    end
+  
+    def create_blob(uploading_file)
+      ActiveStorage::Blob.create_after_upload! \
+        io: uploading_file.open,
+        filename: uploading_file.original_filename,
+        content_type: uploading_file.content_type
     end
     
 end

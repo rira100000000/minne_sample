@@ -1,6 +1,7 @@
 <% provide(:title, 'Edit user') %>
 <% provide(:button_text, 'Save changes') %>
 <%= javascript_pack_tag 'icon_loader',media: 'all'%>
+<%= render 'shared/error_messages', object: @user %>
 
 <h1>Update your profile</h1>
 <div class="row">

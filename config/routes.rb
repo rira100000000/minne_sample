@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   resources :comments ,only: [:create, :destroy]
   get  'my_orders',  to: 'orders#my_orders'
   get 'tags/show'
+  post 'orders/upload_image'
 end

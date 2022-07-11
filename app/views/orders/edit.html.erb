@@ -1,0 +1,35 @@
+<% provide(:title, 'オーダー編集') %>
+<% provide(:button_text, 'Save changes') %>
+<%= form_with(model: @order, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: @order %>
+  
+ //JSで挿入したhtmlと同じ形　each文でのプレビュー表示
+  <% @item.images.each do |image| %>
+    <div class='preview-box'>
+      <div class='upper-box'>
+        <%= image_tag image.image.url, width: "112", height: "112", alt: "preview" %>
+      </div>
+      <div class='lower-box'>
+        <div class='update-box'>
+          <label class=edit-btn>編集</label>
+        </div>
+        <div class='delete-box'>
+          <div class='delete-btn'>
+            <span> 削除</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div class='title_form'>
+    <%= f.text_field :title,class: 'form-control' %>
+  </div>
+  <div class='body_form'>
+    <%= f.text_area :body, class: 'form-control' %>
+  <div class="field">
+    <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+    <%= f.text_field :name,value: @tag_list,class:"form-control"%>
+  </div>
+  
+  <%= f.submit 'オーダーを編集する', class: "btn btn-primary" %>
+<% end %>

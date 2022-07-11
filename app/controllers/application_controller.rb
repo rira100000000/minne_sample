@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
   include ApplicationHelper
-  
+  protect_from_forgery
   # 記憶したURL（もしくはデフォルト値）にリダイレクト
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)
