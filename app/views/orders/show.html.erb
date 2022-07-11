@@ -1,4 +1,4 @@
-
+<%= javascript_pack_tag 'image_uploader',media: 'all'%>
 <h1><%= @order.title %></h1>
 <% if @order.images.attached? %>
   <% @order.images.each do |image| %>

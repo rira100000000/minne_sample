@@ -1,13 +1,44 @@
+<%= javascript_pack_tag 'image_uploader',media: 'all'%>
 <%= form_with(model: @suggestion, local: true) do |f| %>
-  <%= render 'shared/error_messages', object: @suggestion %>
+  <% if @suggestion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(suggestion.errors.count, "error") %> prohibited this order from being saved:</h2>
+      <ul>
+      <% @suggestion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
   <div class='title_form'>
     <%= f.hidden_field :order_id, value: @order.id %>
     <%= f.text_field :title,placeholder: "タイトルを入力してください",class: 'form-control' %>
   </div>
   <div class='body_form'>
     <%= f.text_area :body,placeholder: "詳細な提案の内容を記入してください", class: 'form-control' %>
-  <span class="image">
-    <%= f.file_field :images,multiple: true, accept: "image/jpeg,image/gif,image/png" %>
-  </span>
-  <%= f.submit '提案を送信', class: "btn btn-primary" %>
+  <div class="images-field clearfix">
+    <div  class="field">
+      <%= f.label :images %>
+      <%= f.file_field :images, multiple: false, class: "file-input" %>
+    </div>
+    <% if @suggestion.images.attached? %>
+      <% @suggestion.images.each do |image| %>
+        <div class="image-box">
+          <% new_image = image.variant(resize: "150x150^") %>
+          <%= image_tag new_image %>
+          <p> <%= image.filename %> </p>
+          <%= f.hidden_field :images , name: "suggestion[images][]", value: "#{image.blob.id}", style: "display: none;", class: "order-images-input" %>
+          <%= link_to "Edit", "", class: "btn-edit" %>
+          <%= file_field "edit-image","" , class: "edit-image-file-input file-input", style: "display: none;"%>
+          <%= link_to "Delete", "", class: "btn-delete" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="sell__block__f__btn">
+      <%= f.submit "提案送信",class: "btn-default__btn-red" %>
+  </div>
 <% end %>
