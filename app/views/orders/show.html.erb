@@ -8,7 +8,9 @@
 <h2><%= @order.body %></h2>
 
 <%= render 'shared/tag_index' %>
-<%= link_to 'オーダーを編集する', edit_order_path %>
+<% if @order.user_id == current_user.id %>
+  <%= link_to 'オーダーを編集する', edit_order_path %>
+<% end %>
 
 <% if logged_in? %>
   <%= render '/suggestions/suggestion_form' %>
