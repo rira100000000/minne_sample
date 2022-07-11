@@ -33,7 +33,12 @@ class ApplicationController < ActionController::Base
   
   # 正しいユーザーかどうか確認
   def correct_user
-    @user = User.find(params[:id])
+    if params[:controller] == 'orders'
+      @order = Order.find(params[:id])
+      @user = User.find(@order.user_id)
+    else
+      @user = User.find(params[:id])
+    end
     redirect_to(root_url) unless current_user?(@user)
   end
   

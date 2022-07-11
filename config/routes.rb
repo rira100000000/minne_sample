@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   get  'my_orders',  to: 'orders#my_orders'
   get 'tags/show'
   post 'orders/upload_image'
+
 end

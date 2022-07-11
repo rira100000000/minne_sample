@@ -31,7 +31,7 @@
   <div class="images-field clearfix">
     <div  class="field">
       <%= f.label :images %>
-      <%= f.file_field :images, multiple: true, class: "file-input" %>
+      <%= f.file_field :images, multiple: false, class: "file-input" %>
     </div>
     <% if @order.images.attached? %>
       <% @order.images.each do |image| %>
