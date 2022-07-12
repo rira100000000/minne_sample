@@ -43,15 +43,9 @@ class SuggestionsController < ApplicationController
   end
   
   def uploaded_images
-    
-    if !params[:suggestion].nil? && params[:suggestion][:images]
-      debugger
-      params[:suggestion][:images].map{|id| ActiveStorage::Blob.find(id)} 
-    elsif !params[:order].nil? && params[:order][:images]
+    if !params[:order].nil? && params[:order][:images]
       params[:order][:images].map{|id| ActiveStorage::Blob.find(id)} 
     end
-
-    
   end
 
   

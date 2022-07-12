@@ -1,13 +1,32 @@
 <% if logged_in? %>
+  <%= javascript_pack_tag 'image_uploader',media: 'all'%>
   <%= form_with(model: @comment, local: true) do |f| %>
     <%= render 'shared/error_messages', object: @comment %>
     <%= f.hidden_field :suggestion_id, value: @suggestion.id %>
     <div class='body_form' %>
       <%= f.text_area :body, class: 'form-control', placeholder: "コメントを入力してください" %>
       </div>
-    <span class="image">
-      <%= f.file_field :images, multiple: true,accept: "image/jpeg,image/gif,image/png" %>
-    </span>
+      
+    <div class="images-field clearfix">
+      <div  class="field">
+        <%= f.label :images %>
+        <%= f.file_field :images, multiple: false, class: "file-input" %>
+      </div>
+      <% if @comment.images.attached? %>
+        <% @comment.images.each do |image| %>
+          <div class="image-box">
+            <% new_image = image.variant(resize: "150x150^") %>
+            <%= image_tag new_image %>
+            <p> <%= image.filename %> </p>
+            <%= f.hidden_field :images , name: "order[images][]", value: "#{image.blob.id}", style: "display: none;", class: "order-images-input" %>
+            <%= link_to "Edit", "", class: "btn-edit" %>
+            <%= file_field "edit-image","" , class: "edit-image-file-input file-input", style: "display: none;"%>
+            <%= link_to "Delete", "", class: "btn-delete" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
     <%= f.submit '送信', class: "btn btn-primary" %>
   <% end %>
 <% else %>

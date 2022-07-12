@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def create
     @suggestion = Suggestion.find(comment_suggestion_id)
-    @comment = @suggestion.comments.build params.require(:comment).permit(:content, images: [])
+    @comment = @suggestion.comments.build comment_params
     @comment.content = comment_body
     @comment.user_id = current_user.id
     
@@ -17,6 +17,12 @@ class CommentsController < ApplicationController
   def destroy
   end
   
+  def uploaded_images
+    if !params[:order].nil? && params[:order][:images]
+      params[:order][:images].map{|id| ActiveStorage::Blob.find(id)} 
+    end
+  end
+  
   private
     def comment_body
        params.require(:comment)[:body]
@@ -26,7 +32,7 @@ class CommentsController < ApplicationController
     end
     
     def comment_params
-      params.require(:comment).permit(:content, images: [])
+      params.require(:comment).permit(:content, images: []).merge(images: uploaded_images)
     end
-  
+    
 end
