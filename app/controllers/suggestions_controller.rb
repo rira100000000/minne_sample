@@ -46,7 +46,6 @@ class SuggestionsController < ApplicationController
     Suggestion.find(params[:id]).destroy
     flash[:success] = "提案を削除しました"
     redirect_to '/my_orders'
-
   end
   
   def uploaded_images

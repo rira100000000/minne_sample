@@ -40,6 +40,7 @@ class OrdersController < ApplicationController
   def edit
     @order = Order.find(params[:id])
     @tag_list=@order.tags.pluck(:name).join(',')
+    @user = User.find(@order.user_id)
   end
   
   def update
@@ -51,6 +52,12 @@ class OrdersController < ApplicationController
       flash[:danger] = "オーダー更新に失敗しました"
       render 'edit'
     end
+  end
+  
+  def destroy
+    Order.find(params[:id]).destroy
+    flash[:success] = "オーダーを削除しました"
+    redirect_to '/my_orders'
   end
   
   def my_orders
