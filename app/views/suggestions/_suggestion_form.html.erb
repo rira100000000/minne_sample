@@ -29,7 +29,7 @@
           <% new_image = image.variant(resize: "150x150^") %>
           <%= image_tag new_image %>
           <p> <%= image.filename %> </p>
-          <%= f.hidden_field :images , name: "suggestion[images][]", value: "#{image.blob.id}", style: "display: none;", class: "order-images-input" %>
+          <%= f.hidden_field :images , name: "order[images][]", value: "#{image.blob.id}", style: "display: none;", class: "order-images-input" %>
           <%= link_to "Edit", "", class: "btn-edit" %>
           <%= file_field "edit-image","" , class: "edit-image-file-input file-input", style: "display: none;"%>
           <%= link_to "Delete", "", class: "btn-delete" %>

@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :destroy,:my_orders]
+  before_action :logged_in_user, only: [:new, :edit, :update, :destroy,:my_orders]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
   def index
@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
   end
   
   def new
-    logged_in_user
     @order =Order.new
     @tag_list=@order.tags.pluck(:name).join(',')
   end
@@ -78,12 +77,11 @@ class OrdersController < ApplicationController
 
   end
   
-  def upload_image
-      @image_blob = create_blob(params[:image])
-      respond_to do |format|
-        format.json { @image_blob.id }
-      end
+  def uploaded_images
+    params[:order][:images].map{|id| ActiveStorage::Blob.find(id)} if params[:order][:images]
   end
+
+  
   
   private
     def order_title
@@ -95,18 +93,9 @@ class OrdersController < ApplicationController
     end
     
     def order_params
-    params.require(:order).permit(:title,:body).merge(images: uploaded_images)
+    params.require(:order).permit(:title,:body,:image).merge(images: uploaded_images)
     end
   
-    def uploaded_images
-      params[:order][:images].map{|id| ActiveStorage::Blob.find(id)} if params[:order][:images]
-    end
-  
-    def create_blob(uploading_file)
-      ActiveStorage::Blob.create_after_upload! \
-        io: uploading_file.open,
-        filename: uploading_file.original_filename,
-        content_type: uploading_file.content_type
-    end
+
     
 end

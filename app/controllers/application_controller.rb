@@ -36,6 +36,10 @@ class ApplicationController < ActionController::Base
     if params[:controller] == 'orders'
       @order = Order.find(params[:id])
       @user = User.find(@order.user_id)
+    elsif params[:controller] == 'suggestions'
+      @suggestion = Suggestion.find(params[:id])
+      @order = Order.find(@suggestion.order_id)
+      @user = User.find(@order.user_id)
     else
       @user = User.find(params[:id])
     end
@@ -53,4 +57,21 @@ class ApplicationController < ActionController::Base
   end
   
   helper_method :display_image
+  
+  def upload_image
+      @image_blob = create_blob(params[:image])
+      respond_to do |format|
+        format.json { @image_blob.id }
+      end
+  end
+  
+
+  def create_blob(uploading_file)
+    ActiveStorage::Blob.create_after_upload! \
+      io: uploading_file.open,
+      filename: uploading_file.original_filename,
+      content_type: uploading_file.content_type
+  end
+
+
 end

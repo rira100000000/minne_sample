@@ -1,47 +1,43 @@
 function get_image(e,image_source){
   var files = e.target.files;
   var d = (new $.Deferred()).resolve();
-  
+  console.log('called 4')
   $.each(files,function(i,file){
     var x = d.then(function() {
+        console.log('called 5');
         return Uploader.upload(file)});
       x.then(function(data){
+        console.log('called 6');
         return previewImage(file, data.image_id);
     });
   });
   $(image_source).val('');
 };
   
-  var image_source
-
-  image_source ='#order_images' ;
-  $(image_source).on('change',function(e){
-    get_image(e,image_source);
-  });
-  
-  image_source = '#suggestion_images'
-  $(image_source).on('change',function(e){
-    get_image(e,image_source);
-  });
-  
-  
+$(document).ready(function() {
+  console.log('called 0')
   $('.images-field').on('click','.btn-edit', function(e){
     e.preventDefault();
+    console.log('btn-edit clicked');
     $(this).parent().find('.edit-image-file-input').trigger("click");
   });
   
   $('.images-field').on('change','.edit-image-file-input', function(e){
     var file = e.target.files[0];
     var image_box = $(this).parent();
+    console.log(file);
     Uploader.upload(file).done(function(data){
       replaceImage(file, data.image_id, image_box);
+      console.log(data.image_id);
     });
   });
   
   $('.images-field').on('click','.btn-delete', function(e){
+    console.log('btn-delete clicked');
     e.preventDefault();
     $(this).parent().remove();
   });
+})
   
   var replaceImage = function(imageFile, image_id, element){
     var reader = new FileReader();
@@ -104,22 +100,16 @@ function get_image(e,image_source){
     }
   }
   
-  
-  
-  
-  
-  
 
-$(document).on('turbolinks:load', function(e) {
-  image_source ='#order_images' ;
-  $(image_source).on('change',function(e){
-    get_image(e,image_source);
+
+$(document).ready(function() {
+  console.log('called 1');
+  $('#order_images').on('change',function(e){
+    console.log('called 2');
+    get_image(e,'#order_images');
   });
-  
-  image_source = '#suggestion_images'
-  $(image_source).on('change',function(e){
-    get_image(e,image_source);
+  $('#suggestion_images').on('change',function(e){
+    console.log('called 3')
+    get_image(e,'#suggestion_images');
   });
-  
-  
 })
