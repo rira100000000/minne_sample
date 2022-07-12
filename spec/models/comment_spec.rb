@@ -18,6 +18,8 @@ RSpec.describe Comment, type: :model do
                     user_id: 1,
                     title: "test_title",
                     body: "a" *100,
+                    price: 1000 ,
+                    deadline: 10,
                     )
   end
   

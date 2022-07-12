@@ -8,4 +8,8 @@ class Suggestion < ApplicationRecord
   validates :order_id, presence: true
   validates :body, presence: true, length: { maximum: 10000 }
   validates :title, presence: true, length: { maximum: 100 }
+  validates :price, presence: true
+  validates :deadline, presence: true
+
+
 end

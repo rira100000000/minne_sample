@@ -57,35 +57,45 @@ Suggestion.create!(id: 1,
                   title: '小さな植木鉢を作っています。',
                   body: '写真の形のものでしたら制作できます。植物の指定も可能です。', 
                   order_id: 2, 
-                  user_id: 3
+                  user_id: 3,
+                  price: 100,
+                  deadline: 10,
                   )
                   
 Suggestion.create!(id: 2,
                   title: 'ガーゼ素材子供用パンツ承ります',
                   body: 'ワイドパンツ、ジョガーパンツなど形も多数ございます。記事の参考写真をご覧ください。', 
                   order_id: 1, 
-                  user_id: 1
+                  user_id: 1,
+                  price: 100,
+                  deadline: 10,
                   )
                   
 Suggestion.create!(id: 3,
                   title: 'ミニチュア雑貨の専門店です',
                   body: '植物の写真をいただければミニチュアサイズで制作できます。サイズにて価格が変わります。', 
                   order_id: 2, 
-                  user_id: 4
+                  user_id: 4,
+                  price: 100,
+                  deadline: 10,
                   )
 
 Suggestion.create!(id: 4,
                   title: 'シーグラスの置時計はいかがでしょうか',
                   body: '写真は以前うちで制作していたものです。直径10cmほどのものをおつくりできます。', 
                   order_id: 4, 
-                  user_id: 1
+                  user_id: 1,
+                  price: 100,
+                  deadline: 10,
                   )
 
 Suggestion.create!(id: 5,
                   title: '陶芸工房です',
                   body: '写真の形のものでしたら制作できます。色などのお好みはありますか？', 
                   order_id: 5, 
-                  user_id: 3
+                  user_id: 3,
+                  price: 100,
+                  deadline: 10,
                   )
 
                   

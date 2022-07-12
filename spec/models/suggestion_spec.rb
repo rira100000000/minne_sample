@@ -15,12 +15,14 @@ RSpec.describe Suggestion, type: :model do
                     )
   end
   
-   # user_id、order_id,title、bodyがあれば有効な状態であること
-  it "is valid with a user_id,order_id,title,body" do
+   # user_id、order_id,title、body,price,deadlineがあれば有効な状態であること
+  it "is valid with a user_id,order_id,title,body,price,deadline" do
     suggestion = Suggestion.new(user_id: 1,
                     order_id: 1,
                     title: "test_title",
                     body: "a" *100,
+                    price: 1000,
+                    deadline: 10
                     )
     expect(suggestion).to be_valid
   end
@@ -31,6 +33,8 @@ RSpec.describe Suggestion, type: :model do
                     order_id: 1,
                     title: "test_title",
                     body: "a" *100,
+                    price: 1000,
+                    deadline: 10
                     )
     suggestion.valid?
     expect(suggestion.errors[:user_id]).to include("can't be blank") 
@@ -42,6 +46,8 @@ RSpec.describe Suggestion, type: :model do
                     order_id: nil,
                     title: "test_title",
                     body: "a" *100,
+                    price: 1000,
+                    deadline: 10
                     )
     suggestion.valid?
     expect(suggestion.errors[:order_id]).to include("can't be blank") 
@@ -53,6 +59,8 @@ RSpec.describe Suggestion, type: :model do
                     order_id: 1,
                     title: nil ,
                     body: "a" *100,
+                    price: 1000,
+                    deadline: 10
                     )
     suggestion.valid?
     expect(suggestion.errors[:title]).to include("can't be blank") 
@@ -64,9 +72,37 @@ RSpec.describe Suggestion, type: :model do
                     order_id: 1,
                     title: "test_title",
                     body: nil,
+                    price: 1000,
+                    deadline: 10
                     )
     suggestion.valid?
     expect(suggestion.errors[:body]).to include("can't be blank") 
+  end
+  
+     #priceがなければ無効な状態であること
+  it "is invalid without a price" do
+    suggestion = Suggestion.new(user_id: 1,
+                    order_id: 1,
+                    title: "test_title",
+                    body: "test_body",
+                    price: nil,
+                    deadline: 10
+                    )
+    suggestion.valid?
+    expect(suggestion.errors[:price]).to include("can't be blank") 
+  end
+  
+     #bodyがなければ無効な状態であること
+  it "is invalid without a deadline" do
+    suggestion = Suggestion.new(user_id: 1,
+                    order_id: 1,
+                    title: "test_title",
+                    body: nil,
+                    price: 1000,
+                    deadline: nil
+                    )
+    suggestion.valid?
+    expect(suggestion.errors[:deadline]).to include("can't be blank") 
   end
 
   

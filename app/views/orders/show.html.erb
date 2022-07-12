@@ -11,12 +11,12 @@
   <%= link_to 'オーダーを編集する', edit_order_path %>
 <% end %>
 
-<% if logged_in? %>
-  <%= render '/suggestions/suggestion_form' %>
-<% else %>
+<% if !logged_in? %>
   <div class=please_login>
     ログインして提案しましょう
   </div>
+<% elsif !current_user?(User.find(@order.user_id))%>
+  <%= render '/suggestions/suggestion_form' %>
 <% end %>
 <h3>提案一覧</h3>
 <% @order.suggestions.each do |suggestion| %>

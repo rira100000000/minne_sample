@@ -11,16 +11,28 @@
     </div>
   <% end %>
 
-
+  <%= f.hidden_field :order_id, value: @order.id %>
   <div class='title_form'>
-    <%= f.hidden_field :order_id, value: @order.id %>
+    <%= f.label 'タイトル' %>
     <%= f.text_field :title,placeholder: "タイトルを入力してください",class: 'form-control' %>
   </div>
   <div class='body_form'>
-    <%= f.text_area :body,placeholder: "詳細な提案の内容を記入してください", class: 'form-control' %>
+    <%= f.label '提案の詳細' %>
+    <%= f.text_area :body,placeholder: "提案の詳細な内容を記入してください", class: 'form-control' %>
+  </div>
+  <div class='price_form'>
+    <%= f.label '価格' %>
+    <%= f.number_field :price,placeholder: "価格を記入してください",min: 1, class: 'form-control' %>円
+  </div>
+  
+  <div class='deadline_form'>
+    <%= f.label '発送の目安' %>
+    <%= f.number_field :deadline,placeholder: "受注から発送までの目安を入力してください", min: 0,class: 'form-control' %>日後
+  </div>
+  
   <div class="images-field clearfix">
     <div  class="field">
-      <%= f.label :images %>
+      <%= f.label '画像' %>
       <%= f.file_field :images, multiple: false, class: "file-input" %>
     </div>
     <% if @suggestion.images.attached? %>

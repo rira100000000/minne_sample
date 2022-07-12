@@ -58,7 +58,7 @@ class SuggestionsController < ApplicationController
   private
     
     def suggestion_params
-    params.require(:suggestion).permit(:title,:body,:order_id,:image).merge(images: uploaded_images)
+    params.require(:suggestion).permit(:title,:body,:order_id,:price,:deadline,:image).merge(images: uploaded_images)
     end
     def suggestion_title
       params.require(:suggestion)[:title]

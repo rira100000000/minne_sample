@@ -9,11 +9,9 @@
 <div class='suggestion_title'>
   <% user = User.find(@suggestion.user_id)%>
   <% if user.avatar.present? %>
-  <h1><%= link_to image_tag(user.avatar, class: "user_icon") , user %><%= @suggestion.title %></h1>
+    <h1><%= link_to image_tag(user.avatar, class: "user_icon") , user %><%= @suggestion.title %></h1>
   <% end %>
-  <% if user.avatar.present? %>
   <h1<%= @suggestion.title %></h1>
-  <% end %>
 </div>
 <% if @suggestion.images.attached? %>
   <% @suggestion.images.each do |image| %>
@@ -21,6 +19,9 @@
   <% end %>
 <% end %>
 <h2><%= @suggestion.body %></h2>
+<h2>価格:<%= @suggestion.price %>円<h2>
+<h2>受注から発送までの目安:<%= @suggestion.deadline %>日後<h2>
+
 
 
 <h3>コメント</h3>

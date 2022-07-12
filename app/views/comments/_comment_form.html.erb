@@ -4,12 +4,13 @@
     <%= render 'shared/error_messages', object: @comment %>
     <%= f.hidden_field :suggestion_id, value: @suggestion.id %>
     <div class='body_form' %>
+      <%= f.label 'コメント' %>
       <%= f.text_area :body, class: 'form-control', placeholder: "コメントを入力してください" %>
       </div>
       
     <div class="images-field clearfix">
       <div  class="field">
-        <%= f.label :images %>
+        <%= f.label '画像' %>
         <%= f.file_field :images, multiple: false, class: "file-input" %>
       </div>
       <% if @comment.images.attached? %>
