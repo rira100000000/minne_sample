@@ -28,7 +28,7 @@ class SuggestionsController < ApplicationController
   def edit
     @suggestion = Suggestion.find(params[:id])
     @order = Order.find(@suggestion.order_id)
-
+    @user = User.find(@suggestion.user_id)
   end
   
   def update
@@ -40,6 +40,13 @@ class SuggestionsController < ApplicationController
       flash[:danger] = "提案更新に失敗しました"
       render 'edit'
     end
+  end
+  
+  def destroy
+    Suggestion.find(params[:id]).destroy
+    flash[:success] = "提案を削除しました"
+    redirect_to '/my_orders'
+
   end
   
   def uploaded_images

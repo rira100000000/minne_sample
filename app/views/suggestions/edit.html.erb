@@ -1,5 +1,9 @@
 <% provide(:title, 'suggestion edit') %>
 <% provide(:button_text, 'edit my suggestion') %>
+<% if current_user?(@user) %>
+  <%= link_to "提案を削除する", @suggestion, method: :delete,
+                              data: { confirm: "この提案を削除しますか？" } %>
+<% end %>
 <h1>提案編集</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
