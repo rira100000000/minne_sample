@@ -1,3 +1,59 @@
-// Place all the styles related to the Orders controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.article{
+  padding:5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: #f4f3f2;
+  
+}
+.confirmed_orders{
+  display:flex;
+  background: white;
+}
+.order_label{
+  background: #f4f3f2;
+}
+.label_and_orders{
+  position: relative;
+  .make_label{
+    position: absolute;          /* 位置指定 */
+    left: 50%;                   /* 親要素の半分右にずらす */
+    transform: translateY(0%) translateX(-50%);
+    font-weight: bold;
+    color: #e78140;/*文字色*/
+
+  }
+  .buy_label{
+    position: absolute;          /* 位置指定 */
+    left: 50%;                   /* 親要素の半分右にずらす */
+    transform: translateY(0%) translateX(-50%);
+    font-weight: bold;
+    color: #e78140;/*文字色*/
+
+  }
+}
+.my_suggested_orders{
+  margin-block-start: 1em;
+    margin-block-end: 1em;
+  margin-left: 30px;
+  margin-right: 30px;
+  border: 1px solid #363636;
+  margin-top: 20px;
+  background: #FFF;
+  border: solid 3px #f4f3f2;/*線*/
+  border-radius: 10px;/*角の丸み*/
+
+    
+}
+
+.my_orders{
+  margin-block-start: 1em;
+    margin-block-end: 1em;
+  border: 1px solid #363636;
+  margin-top: 20px;
+  background: #FFF;
+  border: solid 3px #f4f3f2;/*線*/
+  border-radius: 10px;/*角の丸み*/
+}

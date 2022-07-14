@@ -3,6 +3,10 @@
 
 /* universal */
 
+html {
+   
+}
+
 body {
   padding-top: 70px;
 }
@@ -37,6 +41,15 @@ h1 {
 }
 
 h2 {
+  font-size: 2.0em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: #777;
+}
+
+h3 {
   font-size: 1.2em;
   letter-spacing: -1px;
   margin-bottom: 30px;
