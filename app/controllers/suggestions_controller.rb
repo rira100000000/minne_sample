@@ -1,10 +1,12 @@
 class SuggestionsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create,:edit, :update, :destroy]
+  before_action :pending_suggestion, only: [:edit,:update,:destroy]
   def show
     @suggestion = Suggestion.find(params[:id])
     @order = Order.find(@suggestion.order_id)
     @user = User.find(@order.user_id)
     @comment = Comment.new
+    @confirm = Confirm.new
   end
   
   def create
@@ -69,4 +71,14 @@ class SuggestionsController < ApplicationController
     def suggestion_order_id
        params.require(:suggestion)[:order_id]
     end
+        
+    def pending_suggestion
+      @suggestion = Suggestion.find(params[:id])
+      @order = Order.find(@suggestion.order_id)
+      unless @order.status =='pending'
+        flash[:danger] = "この提案は編集できません"
+        redirect_to '/my_orders'
+      end
+    end
+    
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_12_082725) do
+ActiveRecord::Schema.define(version: 2022_07_14_023045) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -43,6 +43,29 @@ ActiveRecord::Schema.define(version: 2022_07_12_082725) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "confirms", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "suggestion_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "address"
+    t.string "tel"
+    t.string "receiver_name"
+    t.string "postcode"
+    t.index ["order_id"], name: "index_confirms_on_order_id"
+    t.index ["suggestion_id"], name: "index_confirms_on_suggestion_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text "body"
+    t.integer "user_id", null: false
+    t.integer "confirm_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["confirm_id"], name: "index_messages_on_confirm_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "order_tags", force: :cascade do |t|
     t.integer "order_id", null: false
     t.integer "tag_id", null: false
@@ -60,7 +83,7 @@ ActiveRecord::Schema.define(version: 2022_07_12_082725) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "reciever"
-    t.string "status", default: "active"
+    t.string "status", default: "pending"
     t.index ["user_id", "created_at"], name: "index_orders_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -92,11 +115,19 @@ ActiveRecord::Schema.define(version: 2022_07_12_082725) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.text "profile"
+    t.string "address"
+    t.string "tel"
+    t.string "postcode"
+    t.string "receiver_name"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "suggestions"
   add_foreign_key "comments", "users"
+  add_foreign_key "confirms", "orders"
+  add_foreign_key "confirms", "suggestions"
+  add_foreign_key "messages", "confirms"
+  add_foreign_key "messages", "users"
   add_foreign_key "order_tags", "orders"
   add_foreign_key "order_tags", "tags"
   add_foreign_key "orders", "users"

@@ -14,9 +14,6 @@ class CommentsController < ApplicationController
     end
   end
   
-  def destroy
-  end
-  
   def uploaded_images
     if !params[:order].nil? && params[:order][:images]
       params[:order][:images].map{|id| ActiveStorage::Blob.find(id)} 

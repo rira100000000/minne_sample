@@ -1,0 +1,32 @@
+<%= javascript_pack_tag 'image_uploader',media: 'all'%>
+<%= form_with(model: @message, local: true) do |f| %>
+  <%= render 'shared/error_messages', object: @message %>
+  <%= f.hidden_field :confirm_id, value: @confirm.id %>
+  <div class='body_form' %>
+    <%= f.label 'メッセージ' %>
+    <%= f.text_area :body, class: 'form-control', placeholder: "メッセージを入力してください" %>
+    </div>
+    
+  <div class="images-field clearfix">
+    <div  class="field">
+      <%= f.label '画像' %>
+      <%= f.file_field :images, multiple: false, class: "file-input" %>
+    </div>
+    <% if @message.images.attached? %>
+      <% @message.images.each do |image| %>
+        <div class="image-box">
+          <% new_image = image.variant(resize: "150x150^") %>
+          <%= image_tag new_image %>
+          <p> <%= image.filename %> </p>
+          <%= f.hidden_field :images , name: "order[images][]", value: "#{image.blob.id}", style: "display: none;", class: "order-images-input" %>
+          <%= link_to "Edit", "", class: "btn-edit" %>
+          <%= file_field "edit-image","" , class: "edit-image-file-input file-input", style: "display: none;"%>
+          <%= link_to "Delete", "", class: "btn-delete" %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= f.submit '送信', class: "btn btn-primary" %>
+<% end %>
+

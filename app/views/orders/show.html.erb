@@ -7,16 +7,17 @@
 <h2><%= @order.body %></h2>
 
 <%= render 'shared/tag_index' %>
-<% if @order.user_id == current_user.id %>
+<% if @order.user_id == current_user.id && @order.status == 'pending'%>
   <%= link_to 'オーダーを編集する', edit_order_path %>
 <% end %>
-
-<% if !logged_in? %>
-  <div class=please_login>
-    ログインして提案しましょう
-  </div>
-<% elsif !current_user?(User.find(@order.user_id))%>
-  <%= render '/suggestions/suggestion_form' %>
+<% if @order.status == 'pending' %>
+  <% if !logged_in? %>
+    <div class=please_login>
+      ログインして提案しましょう
+    </div>
+  <% elsif !current_user?(User.find(@order.user_id))%>
+    <%= render '/suggestions/suggestion_form' %>
+  <% end %>
 <% end %>
 <h3>提案一覧</h3>
 <% @order.suggestions.each do |suggestion| %>

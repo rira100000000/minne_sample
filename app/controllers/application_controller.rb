@@ -73,5 +73,4 @@ class ApplicationController < ActionController::Base
       content_type: uploading_file.content_type
   end
 
-
 end

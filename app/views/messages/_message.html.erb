@@ -1,0 +1,11 @@
+<% user = User.find(message.user_id)%>
+<% if user.avatar.present? %>
+  <%= image_tag user.avatar, class: "user_icon" %>
+<% end %>
+<%= link_to user.name ,user %>
+<% if message.images.attached? %>
+  <% message.images.each do |image| %>
+    <%= link_to (image_tag display_image(image)) , image%>
+  <% end %>
+<% end %>
+<%= message.body %><br>

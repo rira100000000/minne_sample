@@ -2,6 +2,8 @@ class OrdersController < ApplicationController
   before_action :logged_in_user, only: [:new, :edit, :update, :destroy,:my_orders]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
+  before_action :pending_order,  only: [:edit , :update,:destroy]
+  
   def index
     @orders = Order.paginate(page: params[:page])
     @tag_list=Tag.all
@@ -62,26 +64,37 @@ class OrdersController < ApplicationController
   
   def my_orders
     @user = User.find(current_user.id)
-    @orders = @user.orders.paginate(page: params[:page])
-    @recieved_orders = Order.where reciever: @user.id
-    @suggestions = Suggestion.where user_id: @user.id
+    suggestions = Suggestion.where user_id: @user.id
     @avatar = @user.avatar
     @profile = @user.profile
     
-    #提案中の依頼から既に受注済み依頼を除く処理
-    order_ids =[]
-    @recieved_orders.each do |ordar|
-      order_ids << ordar.id
+    #提案した依頼全て
+    suggested_orders = suggestions.map{|suggestion|Order.find suggestion.order_id}
+    #受注済み依頼
+    @confirmed_orders = suggested_orders.inject([]) do |arr,ordar|
+      next arr unless ordar.status=='confirmed'
+      arr.push(ordar)
     end
-    
-    suggestion_order_ids =[]
-    @suggestions.each do |suggestion|
-      suggestion_order_ids << suggestion.order_id if !order_ids.include?(suggestion.order_id)
-    end
-    
-    @suggestion_orders = Order.where id: suggestion_order_ids
-    @my_orders = Order.where user_id: @user.id
 
+    #現在提案中依頼
+    @pending_orders = suggested_orders.inject([]) do |arr,ordar|
+      next arr unless ordar.status=='pending'
+      arr.push(ordar)
+    end
+    
+    #自分の出したオーダーすべて
+    @my_orders = Order.where user_id: @user.id
+    
+    #自分の出した依頼（発注済み)
+    @my_confirmed_orders = @my_orders.inject([]) do |arr,my_order|
+      next arr unless my_order.status == 'confirmed'
+      arr.push(my_order)
+    end
+    #自分の出した依頼（未発注)
+    @my_unconfirmed_orders = @my_orders.inject([]) do|arr,my_order|
+      next arr unless my_order.status == 'pending'
+      arr.push(my_order)
+    end
   end
   
   def uploaded_images
@@ -103,6 +116,14 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:title,:body,:image).merge(images: uploaded_images)
     end
   
+    
+    def pending_order
+      @order = Order.find(params[:id])
+      unless @order.status =='pending'
+        flash[:danger] = "このオーダーは編集できません"
+        redirect_to '/my_orders'
+      end
+    end
 
     
 end

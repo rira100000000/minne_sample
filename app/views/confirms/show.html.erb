@@ -1,0 +1,39 @@
+<div class='suggestion_title'>
+  <% user = User.find(@suggestion.user_id)%>
+  <% if user.avatar.present? %>
+    <h1><%= link_to image_tag(user.avatar, class: "user_icon") , user %><%= @suggestion.title %></h1>
+  <% end %>
+  <h1<%= @suggestion.title %></h1>
+</div>
+<% if @suggestion.images.attached? %>
+  <% @suggestion.images.each do |image| %>
+    <%= link_to (image_tag display_image(image)) , image %>
+  <% end %>
+<% end %>
+<div class='suggestion'>
+  <h2><%= @suggestion.body %></h2>
+  <h2>価格:<%= @suggestion.price %>円<h2>
+  <h2>受注から発送までの目安:<%= @suggestion.deadline %>日後<h2>
+  <%= link_to 'オーダーを見る', @order %>
+</div>
+<div class='address'>
+  <%= form_with(model: @confirm, local: true) do |f| %>
+    <h2>発送先情報</h2>
+    <%= f.label '受取人名' %>
+    <%= f.text_field :receiver_name, class: 'form-control' %>
+    
+    <%= f.label :'郵便番号' %>
+    <%= f.text_field :postcode, class: 'form-control' %>
+    
+    <%= f.label '住所' %>
+    <%= f.text_field :address, class: 'form-control' %>
+    
+    <%= f.label 'TEL' %>
+    <%= f.text_field :tel, class: 'form-control' %>
+  
+    <%= f.submit '配送先情報を更新する', class: "btn btn-primary" %>
+  <% end %>
+</div>
+<h3>メッセージ</h3>
+<%= render '/messages/message_form' %>
+<%= render @confirm.messages %>

@@ -3,10 +3,10 @@
 <%= link_to '新しい依頼を作成する','orders/new' %>
 <h2> 新着依頼 </h2>
  <% @orders.each do |order| %>
-   <% if order.status =='active' %>
+   <% if order.status =='pending' %>
     <span class='status'>受付中</span>
-   <% else %>
-    <span class='status'>終了</span>
+   <% else%>
+    <span class='status'>受付終了</span>
    <% end %>
    <%= link_to order.title,order %>
    <i class="tags">

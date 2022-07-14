@@ -2,7 +2,7 @@
   <%= link_to @order.title ,@order %>
 </div>
 
-<% if @suggestion.user_id == current_user.id %>
+<% if @suggestion.user_id == current_user.id && @order.status == 'pending'%>
   <%= link_to '提案を編集する', edit_suggestion_path %>
 <% end %>
 
@@ -15,15 +15,36 @@
 </div>
 <% if @suggestion.images.attached? %>
   <% @suggestion.images.each do |image| %>
-    <%= link_to (image_tag display_image(image)) , image%>
+    <%= link_to (image_tag display_image(image)) , image %>
   <% end %>
 <% end %>
 <h2><%= @suggestion.body %></h2>
 <h2>価格:<%= @suggestion.price %>円<h2>
 <h2>受注から発送までの目安:<%= @suggestion.deadline %>日後<h2>
+  
 
 
-
+<% if @order.status == 'pending' %>
+  <%= form_with(model: @confirm, local: true) do |f| %>
+    <% if @confirm.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(suggestion.errors.count, "error") %> prohibited this order from being saved:</h2>
+        <ul>
+        <% @confirm.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <%= f.hidden_field :order_id, value: @order.id %>
+    <%= f.hidden_field :suggestion_id, value: @suggestion.id %>
+  
+    <div class="sell__block__f__btn">
+        <%= f.submit "提案の内容でオーダーを確定する",class: "btn-default__btn-red" %>
+    </div>
+  <% end %>
+<% end %>  
 <h3>コメント</h3>
 <%= render '/comments/comment_form' %>
 <%= render @suggestion.comments %>

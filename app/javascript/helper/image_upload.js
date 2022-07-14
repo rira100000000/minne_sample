@@ -112,9 +112,13 @@ $(document).ready(function() {
     console.log('called 3')
     get_image(e,'#suggestion_images');
   });
-    $('#comment_images').on('change',function(e){
+  $('#comment_images').on('change',function(e){
     console.log('called 3')
     get_image(e,'#comment_images');
+  });
+  $('#message_images').on('change',function(e){
+    console.log('called 3')
+    get_image(e,'#message_images');
   });
   
 })

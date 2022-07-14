@@ -5,27 +5,40 @@
   <%= image_tag @avatar, class: "user_icon" %>
 <% end %>
 
-<div class="recieved_orders">
-  <% if  current_user?(@user) %>
-    <h3><%= @user.name %>さんの受注済み依頼 (<%= @recieved_orders.count %>)</h3>
-    <ol class="recieved_orders">
-      <% @recieved_orders.each do |ordar| %>
+<div class="confirmed_orders">
+  <% if current_user?(@user) %>
+    <h3><%= @user.name %>さんの受注済みオーダー (<%= @confirmed_orders.count %>)</h3>
+    <ol class="confirmed_orders">
+      <% @confirmed_orders.each do |ordar| %>
+        <% id = Confirm.find_by(order_id: 1).id %>
+        <% confirm_url = '/confirms/' + id.to_s + '/detail' %>
+        <%= link_to ordar.title ,ordar %><%= link_to '注文ページへ' , confirm_url %><br>
+      <% end %>
+    </ol>
+    
+    <h3><%= @user.name %>さんの提案中のオーダー (<%= @pending_orders.count %>)</h3>
+    <ol class="pending_orders">
+      <% @pending_orders.each do |ordar| %>
         <%= link_to ordar.title ,ordar %><br>
       <% end %>
     </ol>
     
-    <h3><%= @user.name %>さんの提案中の依頼 (<%= @suggestion_orders.count %>)</h3>
-    <ol class="suggestions">
-      <% @suggestion_orders.each do |ordar| %>
+    <h3> <%= @user.name %>さんの発注済みオーダー (<%= @my_confirmed_orders.count %>)</h3>
+    <ol class="my_confirmed_orders">
+      <% @my_confirmed_orders.each do |ordar| %>
+        <%= link_to ordar.title ,ordar %><%= link_to '注文ページへ' , Confirm.find_by(order_id: ordar.id) %><br>
+      <% end %>
+    </ol>
+    
+    <h3> <%= @user.name %>さんの未発注オーダー (<%= @my_unconfirmed_orders.count %>)</h3>
+    <ol class="my_unconfirmed_orders">
+      <% @my_unconfirmed_orders.each do |ordar| %>
         <%= link_to ordar.title ,ordar %><br>
       <% end %>
     </ol>
+    
 
-    <h3> <%= @user.name %>さんの依頼 (<%= @my_orders.count %>)</h3>
-    <ol class="my_orders">
-      <% @my_orders.each do |ordar| %>
-        <%= link_to ordar.title ,ordar %><br>
-      <% end %>
-    </ol>
+    
+    
   <% end %>
 </div>

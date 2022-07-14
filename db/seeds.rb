@@ -4,6 +4,10 @@ user = User.create!(name:  "Example User",
              password:              "foobar",
              password_confirmation: "foobar",
              admin: true,
+             postcode: '100-0000',
+             address: '東京都千代田区日比谷1-1-1',
+             tel: '03-1234-5678',
+             receiver_name: '田中太郎'
              )
 user.avatar.attach(io: File.open(Rails.root.join('app/assets/images/upper_body.jpg')),
                   filename: 'upper_body.jpg')
@@ -25,13 +29,31 @@ Order.create!(id:  1,
              title: '子供用にカーキのパンツが欲しい',
              body: '120サイズでなるべく涼しい素材のカーキ色のパンツを探しています。',
              user_id: 2,
-             reciever: 1)
+             status: 'confirmed')
+               
+Suggestion.create!(id: 2,
+                  title: 'ガーゼ素材子供用パンツ承ります',
+                  body: 'ワイドパンツ、ジョガーパンツなど形も多数ございます。記事の参考写真をご覧ください。', 
+                  order_id: 1, 
+                  user_id: 1,
+                  price: 100,
+                  deadline: 10,
+                  )
+Confirm.create!(id: 2,
+                order_id: 1,
+                suggestion_id: 2,
+                postcode: '100-0000',
+                address: '東京都千代田区日比谷1-1-1',
+                tel: '03-1234-5678',
+                receiver_name: '田中太郎')  
+             
+             
              
 Order.create!(id:  2,
              title: '小さくてピンク色の植木鉢が欲しい',
              body: '親指サイズくらいのピンク色の植木鉢が欲しいです。',
-             user_id: 1 ,
-             reciever: 2)
+             user_id: 1
+             )
 
 Order.create!(id:  3,
              title: 'フィギュアの飾り台が欲しい',
@@ -49,7 +71,7 @@ Order.create!(id:  5,
              title: '陶器のペアグラスが欲しい',
              body: '両親にプレゼントするためにペアグラスが欲しいです。',
              user_id: 1,
-             status: 'inactive'
+             status: :confirmed
              )
 
              
@@ -61,16 +83,7 @@ Suggestion.create!(id: 1,
                   price: 100,
                   deadline: 10,
                   )
-                  
-Suggestion.create!(id: 2,
-                  title: 'ガーゼ素材子供用パンツ承ります',
-                  body: 'ワイドパンツ、ジョガーパンツなど形も多数ございます。記事の参考写真をご覧ください。', 
-                  order_id: 1, 
-                  user_id: 1,
-                  price: 100,
-                  deadline: 10,
-                  )
-                  
+   
 Suggestion.create!(id: 3,
                   title: 'ミニチュア雑貨の専門店です',
                   body: '植物の写真をいただければミニチュアサイズで制作できます。サイズにて価格が変わります。', 
@@ -97,8 +110,11 @@ Suggestion.create!(id: 5,
                   price: 100,
                   deadline: 10,
                   )
-
                   
+Confirm.create!(id: 1,
+                order_id: 5,
+                suggestion_id: 5)  
+                
 Comment.create!(id: 1, 
                 content: '提案ありがとうございます。現在注文すると納期と金額はいくらぐらいになりますか？', 
                 user_id: 2, 
