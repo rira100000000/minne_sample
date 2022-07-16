@@ -1,13 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyText
-  body: MyText
+  title: 'a'
+  body: 'a'
   order_id: 1
   user_id: 2
+  price: 100
+  deadline: 10
 
 two:
-  title: MyText
-  body: MyText
+  title: 'a'
+  body: 'a'
   order_id: 1
   user_id: 3
+  price: 100
+  deadline: 10
