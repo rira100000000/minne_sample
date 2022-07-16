@@ -1,3 +1,4 @@
+<%= javascript_pack_tag 'my_order',media: 'all'%>
 <% provide(@user) %>
 <div class='user_info'>
   <% if @avatar.present? %>
@@ -5,11 +6,16 @@
   <% end %>
   <%= @user.name %>
 </div>
-<div class='article'>
+<div class="wrapper">
+    <ul class="tab">
+      <li><a href="#make" class='make_tab'>作る</a></li>
+      <li><a href="#order" class='order_tab'>依頼する</a></li>
+    </ul>
+
   <% if current_user?(@user) %>
     <div class="confirmed_orders">
+     <div id="make" class="area">
       <div class ='label_and_orders'>
-        <div class ='make_label'>作る</div>
         <div class ='my_suggested_orders'>
           <div class='order_label'><%= @user.name %>さんの受注済みオーダー (<%= @confirmed_orders.count %>)</div>
           <ol class="confirmed_orders">
@@ -27,10 +33,9 @@
           </ol>
         </div>
       </div>
-      
+    </div>
+    <div id="order" class="area">      
       <div class ='label_and_orders'>
-        <div class ='buy_label'>依頼する</div>
-        <div class ='my_orders'>
           <div class='order_label'> <%= @user.name %>さんの発注済みオーダー (<%= @my_confirmed_orders.count %>)</div>
           <ol class="my_confirmed_orders">
             <% @my_confirmed_orders.each do |ordar| %>
@@ -44,8 +49,8 @@
               <%= link_to ordar.title ,ordar %><br>
             <% end %>
           </ol>
-        </div>
       </div>
     </div>
+  </div>
+
   <% end %>
-</div>
