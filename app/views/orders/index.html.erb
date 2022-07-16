@@ -14,7 +14,7 @@
        <%= link_to order.title,order, class: "order_link" %>
        <div class="tags">
          <% order.tags.each do |tag|%>
-           <span class="tag"><%= link_to tag.name ,tags_show_path(tag_id: tag.id) %> </span>
+           <span class="tag"><%= link_to tag.name ,tags_show_path(tag_id: tag.id),class: 'tag_one' %> </span>
          <% end %>
        </div>
      </div>

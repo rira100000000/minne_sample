@@ -75,8 +75,8 @@
 	line-height: 1;
 	text-decoration: none;
 	color: #FFFFFF;
-	background-color: #33CC66;
-	border: 1px solid #33CC66;
+	background-color: #E78140;
+	border: 1px solid #E78140;
 	border-radius: 2em;
   width: 32.987;
 }
@@ -88,9 +88,9 @@
 	padding: .6em;
 	line-height: 1;
 	text-decoration: none;
-	color: #FFFFFF;
-	background-color: #FFABCE;
-	border: 1px solid #FFABCE;
+	color: #575756;
+	background-color: #EEEEEE;
+	border: 1px solid #EEEEEE;
 	border-radius: 2em;
   width: 32.987;
 
@@ -116,6 +116,7 @@
   
 }
 
+/* オーダーを作成するボタン*/
 .new_order{
   font-size: 18px;
 	display: inline-block;
@@ -124,8 +125,8 @@
 	line-height: 1;
 	text-decoration: none;
 	color: #FFFFFF;
-	background-color: #33CC66;
-	border: 1px solid #33CC66;
+	background-color: #E78140;
+	border: 1px solid #E78140;
 	border-radius: 0.3em;
 	a,
   a:visited,
@@ -136,7 +137,8 @@
   }
 }
 .new_order:hover {
-	background-color:#006600; 	/*リンクにマウスが乗ったら背景色を変更する*/
+	background-color:#FFDBC9; 	/*リンクにマウスが乗ったら背景色を変更する*/
+	border: 1px solid #FFDBC9;
 }
 
 .user_info{
@@ -173,14 +175,18 @@
     font-size: 80%;
   	padding: .6em;
   	text-decoration: none;
-  	color: #0000ee;
-  	background-color: #DDFFFF;
-  	border: 1px solid #DDFFFF;
+  	color: #575756;
+  	background-color: #F4F3F2;
+  	border: 1px solid #F4F3F2;
   	border-radius: 2em;
   }
   .tag:before {
   	content: "#";	
   }
+  
+.tag_one{
+color: #575756;
+}
 
 .tab {
 
@@ -193,7 +199,7 @@
   width: 150px;
   margin: 0 auto;
   text-align: center;
-  color: black;
+  color: #575756;
 }
 
 .tab li a {
@@ -239,11 +245,6 @@ body {
 
 ul {
   list-style:none;
-}
-
-a {
-  color:#333;
-  text-decoration: none;
 }
 
 .wrapper {

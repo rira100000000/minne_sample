@@ -1,4 +1,4 @@
 <% @tag_list.each do |tag|%>
   
-  <i class='tag'><%= link_to tag.name + "(#{tag.orders.count})", tags_show_path(tag_id: tag.id) %></i>
+  <i class='tag'><%= link_to tag.name + "(#{tag.orders.count})", tags_show_path(tag_id: tag.id),class: 'tag_one' %></i>
 <% end %>
