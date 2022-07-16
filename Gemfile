@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 gem 'bcrypt'
-gem 'bootstrap-sass'
+gem 'bootstrap'
 gem 'rails-controller-testing'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
@@ -12,6 +12,7 @@ gem 'image_processing'
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'jquery-rails'
+gem 'font-awesome-sass'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.5'

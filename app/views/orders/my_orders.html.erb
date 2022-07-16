@@ -1,9 +1,10 @@
 <% provide(@user) %>
-<%= @user.name %>
-
-<% if @avatar.present? %>
-  <%= image_tag @avatar, class: "user_icon" %>
-<% end %>
+<div class='user_info'>
+  <% if @avatar.present? %>
+    <%= image_tag @avatar, class: "user_icon" %>
+  <% end %>
+  <%= @user.name %>
+</div>
 <div class='article'>
   <% if current_user?(@user) %>
     <div class="confirmed_orders">

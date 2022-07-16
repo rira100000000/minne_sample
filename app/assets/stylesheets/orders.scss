@@ -1,21 +1,24 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+// @import "bootstrap-sprockets";
+// @import "bootstrap";
 
 .article{
-  padding:5px;
-  padding-left: 15px;
-  padding-right: 15px;
-  background: #f4f3f2;
   
 }
+
 .confirmed_orders{
+  margin:auto auto ;
+  
   display:flex;
+  width: fit-content;
   background: white;
+  border: 3px solid #f4f3f2;
+	border-radius: 2em;
 }
 .order_label{
   background: #f4f3f2;
 }
 .label_and_orders{
+  margin: 5px 20px;
   position: relative;
   .make_label{
     position: absolute;          /* 位置指定 */
@@ -56,4 +59,129 @@
   background: #FFF;
   border: solid 3px #f4f3f2;/*線*/
   border-radius: 10px;/*角の丸み*/
+}
+
+.order_status{
+  width: 34;
+  height: 13;
+  margin: auto 0;
+}
+
+.pending{
+  font-size: 11px;
+	display: inline-block;
+	margin: 0 .1em .6em 0;
+	padding: .6em;
+	line-height: 1;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #33CC66;
+	border: 1px solid #33CC66;
+	border-radius: 2em;
+  width: 32.987;
+}
+
+.confirmed{
+  font-size: 11px;
+	display: inline-block;
+	margin: 0 .1em .6em 0;
+	padding: .6em;
+	line-height: 1;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #FFABCE;
+	border: 1px solid #FFABCE;
+	border-radius: 2em;
+  width: 32.987;
+
+  
+}
+
+.order_index{
+  	border-top: 1px solid #EEEEEE;
+  	font-size: 14px;
+  	font-weight: 900;
+  	display: flex;
+  	height: 60px;
+}
+
+.order_index_flame{
+	padding: .6em;
+	line-height: 1;
+	text-decoration: none;
+	border: 3px solid #f4f3f2;
+	border-radius: 2em;
+	width: 70%;
+  margin: 0 auto;
+  
+}
+
+.new_order{
+  font-size: 18px;
+	display: inline-block;
+	margin: 10px 0 .6em auto;
+	padding: .6em;
+	line-height: 1;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #33CC66;
+	border: 1px solid #33CC66;
+	border-radius: 0.3em;
+	a,
+  a:visited,
+  a:hover,
+  a:active {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+.new_order:hover {
+	background-color:#006600; 	/*リンクにマウスが乗ったら背景色を変更する*/
+}
+
+.user_info{
+ margin-left: auto;
+ display:flex;
+ .user_info_name{
+   margin-bottom: 0px;
+   margin-top:auto;
+ }
+}
+.order_index_mid{
+  position: relative;
+  display: block;
+  width: 70%;
+ 
+  .order_link{
+  font-size: 16px;
+  word-break: break-all;
+  width: 70%;
+  }
+
+/*タグ*/
+  .tags{
+      position: absolute;
+    	word-break: keep-all;
+      bottom: 0;
+      left: 0;
+      display: inline-block;
+  }
+}
+
+ .tag{
+      display: inline-block;
+      font-size: 80%;
+    	padding: .6em;
+    	text-decoration: none;
+    	color: #0000ee;
+    	background-color: #DDFFFF;
+    	border: 1px solid #DDFFFF;
+    	border-radius: 2em;
+    }
+    .tag:before {
+    	content: "#";	
+    }
+
+.btn-color{
+
 }

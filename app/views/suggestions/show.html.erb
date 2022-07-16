@@ -2,7 +2,7 @@
   <%= link_to @order.title ,@order %>
 </div>
 
-<% if @suggestion.user_id == current_user.id && @order.status == 'pending'%>
+<% if logged_in? && @suggestion.user_id == current_user.id && @order.status == 'pending'%>
   <%= link_to '提案を編集する', edit_suggestion_path %>
 <% end %>
 
