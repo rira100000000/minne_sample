@@ -3,14 +3,13 @@
   <%= form_with(model: @comment, local: true) do |f| %>
     <%= render 'shared/error_messages', object: @comment %>
     <%= f.hidden_field :suggestion_id, value: @suggestion.id %>
-    <div class='body_form' %>
-      <%= f.label 'コメント' %>
+    <div class='comment_form' %>
       <%= f.text_area :body, class: 'form-control', placeholder: "コメントを入力してください" %>
     </div>
       
     <div class="images-field clearfix">
       <div  class="field">
-        <%= f.label '画像' %>
+        <%= f.label '画像' %><br>
         <%= f.file_field :images, multiple: false, class: "file-input" %>
       </div>
       <% if @comment.images.attached? %>
@@ -28,7 +27,7 @@
       <% end %>
     </div>
 
-    <%= f.submit '送信', class: "btn btn-primary" %>
+    <%= f.submit '送信', class: "comment-btn" %>
   <% end %>
 <% else %>
 <div class=please_login>

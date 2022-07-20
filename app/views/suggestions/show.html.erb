@@ -44,11 +44,13 @@
     <%= f.hidden_field :order_id, value: @order.id %>
     <%= f.hidden_field :suggestion_id, value: @suggestion.id %>
   
-    <div class="sell__block__f__btn">
-        <%= f.submit "提案の内容でオーダーを確定する",class: "btn-default__btn-red" %>
+    <div class="btn-block">
+        <%= f.submit "提案の内容でオーダーを確定する",class: "order-submit-btn" %>
     </div>
   <% end %>
-<% end %>  
-<h3>コメント</h3>
+<% end %> 
+コメント
+<div class='comment_area'>
+  <%= render @suggestion.comments %>
+</div>
 <%= render '/comments/comment_form' %>
-<%= render @suggestion.comments %>
