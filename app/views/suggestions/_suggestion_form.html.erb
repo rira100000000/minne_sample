@@ -10,47 +10,53 @@
       </ul>
     </div>
   <% end %>
-
-  <%= f.hidden_field :order_id, value: @order.id %>
-  <div class='title_form'>
-    <%= f.label 'タイトル' %>
-    <%= f.text_field :title,placeholder: "タイトルを入力してください",class: 'form-control' %>
-  </div>
-  <div class='body_form'>
-    <%= f.label '提案の詳細' %>
-    <%= f.text_area :body,placeholder: "提案の詳細な内容を記入してください", class: 'form-control' %>
-  </div>
-  <div class='price_form'>
-    <%= f.label '価格' %>
-    <%= f.number_field :price,placeholder: "価格を記入してください",min: 1, class: 'form-control' %>円
-  </div>
-  
-  <div class='deadline_form'>
-    <%= f.label '発送の目安' %>
-    <%= f.number_field :deadline,placeholder: "受注から発送までの目安を入力してください", min: 0,class: 'form-control' %>日後
-  </div>
-  
-  <div class="images-field clearfix">
-    <div  class="field">
-      <%= f.label '画像' %>
-      <%= f.file_field :images, multiple: false, class: "file-input" %>
+  <div class='suggestion_form'>
+    <%= f.hidden_field :order_id, value: @order.id %>
+    <div class='title_form'>
+      <%= f.label 'タイトル' %>
+      <%= f.text_field :title,placeholder: "タイトルを入力してください",class: 'form-control' %>
     </div>
-    <% if @suggestion.images.attached? %>
-      <% @suggestion.images.each do |image| %>
-        <div class="image-box">
-          <% new_image = image.variant(resize: "150x150^") %>
-          <%= image_tag new_image %>
-          <p> <%= image.filename %> </p>
-          <%= f.hidden_field :images , name: "order[images][]", value: "#{image.blob.id}", style: "display: none;", class: "order-images-input" %>
-          <%= link_to "Edit", "", class: "btn-edit" %>
-          <%= file_field "edit-image","" , class: "edit-image-file-input file-input", style: "display: none;"%>
-          <%= link_to "Delete", "", class: "btn-delete" %>
-        </div>
+    <div class='body_form'>
+      <%= f.label '提案の詳細' %>
+      <%= f.text_area :body,placeholder: "提案の詳細な内容を記入してください", class: 'form-control' %>
+    </div>
+    <div class='price_form'>
+      <%= f.label '価格' %>
+      <div class='flex-end'>
+        <%= f.number_field :price,placeholder: "価格を記入してください",min: 1, class: 'form-control' %>円
+      </div>
+    </div>
+    
+    <div class='deadline_form'>
+      <%= f.label '発送の目安' %>
+      <div class='flex-end'>      
+        <%= f.number_field :deadline,placeholder: "受注から発送までの目安を入力してください", min: 0,class: 'form-control' %>
+        <span class='after_day'>日後</span>
+      </div>
+    </div>
+    
+    <div class="images-field clearfix">
+      <div  class="field">
+        <%= f.label '画像' %><br>
+        <%= f.file_field :images, multiple: false, class: "file-input" %>
+      </div>
+      <% if @suggestion.images.attached? %>
+        <% @suggestion.images.each do |image| %>
+          <div class="image-box">
+            <% new_image = image.variant(resize: "150x150^") %>
+            <%= image_tag new_image %>
+            <p> <%= image.filename %> </p>
+            <%= f.hidden_field :images , name: "order[images][]", value: "#{image.blob.id}", style: "display: none;", class: "order-images-input" %>
+            <%= link_to "Edit", "", class: "btn-edit" %>
+            <%= file_field "edit-image","" , class: "edit-image-file-input file-input", style: "display: none;"%>
+            <%= link_to "Delete", "", class: "btn-delete" %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <div class="btn-block">
+      <%= f.submit "提案送信",class: "suggestion-btn" %>
+    </div>
   </div>
 
-  <div class="sell__block__f__btn">
-      <%= f.submit "提案送信",class: "btn-default__btn-red" %>
-  </div>
 <% end %>

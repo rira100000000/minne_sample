@@ -1,15 +1,39 @@
-<h1><%= @order.title %></h1>
+<div class='title_area'>
+  <div vlass='status_and_icon'>
+    <div class='order_status'>
+     <% if @order.status =='pending' %>
+      <span class='pending'>受付中</span>
+     <% else%>
+      <span class='confirmed'>発注済</span>
+     <% end %>
+    </div>
+    <% user = User.find(@order.user_id) %>
+    <div class='user_data'>
+      <%= link_to image_tag(user.avatar, class: "user_icon") %>
+      <%= link_to user.name, user,class: 'user_name' %>
+    </div>
+  </div>
+  <div class='title'><%= @order.title %></div>
+  <%= render 'shared/tag_index' %><br>
+  <span class='date'>投稿<%= @order.created_at.strftime('%Y/%m/%d') %></span>
+</div>
 <% if @order.images.attached? %>
   <% @order.images.each do |image| %>
     <%= link_to (image_tag display_image(image)) , image%>
   <% end %>
 <% end %>
-<h2><%= @order.body %></h2>
+<div class='order_label'>オーダーの内容</div>
+<div class='order_body'><%= @order.body %></div>
 
-<%= render 'shared/tag_index' %>
 <% if logged_in? && @order.user_id == current_user.id && @order.status == 'pending'%>
   <%= link_to 'オーダーを編集する', edit_order_path %>
 <% end %>
+
+<div class='suggestions'>提案一覧</div>
+<% @order.suggestions.each do |suggestion| %>
+  <%= link_to image_tag(User.find(suggestion.user_id).avatar, class: "user_icon") %><%= link_to suggestion.title, suggestion %><br>
+<% end %>
+
 <% if @order.status == 'pending' %>
   <% if !logged_in? %>
     <div class=please_login>
@@ -18,8 +42,4 @@
   <% elsif !current_user?(User.find(@order.user_id))%>
     <%= render '/suggestions/suggestion_form' %>
   <% end %>
-<% end %>
-<h3>提案一覧</h3>
-<% @order.suggestions.each do |suggestion| %>
-  <%= link_to image_tag(User.find(suggestion.user_id).avatar, class: "user_icon") %><%= link_to suggestion.title, suggestion %><br>
 <% end %>

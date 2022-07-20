@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'confirms/destroy'
   get 'sessions/new'
   get 'users/new'
+  get '/new', to: 'orders#new'
   get 'portfolio/home'
   get 'users/index'
   root 'portfolio#home'

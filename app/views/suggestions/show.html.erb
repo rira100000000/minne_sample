@@ -6,21 +6,25 @@
   <%= link_to '提案を編集する', edit_suggestion_path %>
 <% end %>
 
-<div class='suggestion_title'>
-  <% user = User.find(@suggestion.user_id)%>
-  <% if user.avatar.present? %>
-    <h1><%= link_to image_tag(user.avatar, class: "user_icon") , user %><%= @suggestion.title %></h1>
-  <% end %>
-  <h1<%= @suggestion.title %></h1>
+<div class='title_area'>
+    <% user = User.find(@suggestion.user_id)%>
+    <% if user.avatar.present? %>
+      <div class='user_data'>
+        <%= link_to image_tag(user.avatar, class: "user_icon") , user %>
+        <%= link_to user.name,user ,class: "user_icon"%>
+      </div>
+    <% end %>
+    <div class='title'> <%= @suggestion.title %> </div>
+  <span class='date'>投稿<%= @order.created_at.strftime('%Y/%m/%d') %></span>
 </div>
 <% if @suggestion.images.attached? %>
   <% @suggestion.images.each do |image| %>
     <%= link_to (image_tag display_image(image)) , image %>
   <% end %>
 <% end %>
-<h2><%= @suggestion.body %></h2>
-<h2>価格:<%= @suggestion.price %>円<h2>
-<h2>受注から発送までの目安:<%= @suggestion.deadline %>日後<h2>
+<div class='suggestion_body'><%= @suggestion.body %></div>
+<div class='price'>価格:<%= @suggestion.price %>円</div>
+<div class='deadline'>受注から発送までの目安:<%= @suggestion.deadline %>日後</div>
   
 
 
