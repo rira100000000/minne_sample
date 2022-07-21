@@ -12,8 +12,8 @@
   .comment-btn{
     width: 300px;
     font-size: 18px;
-    display: inline-block;
-  	margin: 10px auto 0 0;
+    display: block;
+  	margin: 10px auto 0 auto;
   	padding: .6em;
   	line-height: 1;
   	text-decoration: none;
@@ -33,5 +33,23 @@
     margin: 20px;
   	border: 1px solid #ddd;
   	border-radius: 0.3em;
+  
+}
+
+.images-field{
+  margin: 0 20px 20px 20px;
+}
+
+.my_comment{
+  	border: 1px solid #ddd;
+  	border-radius: 0.3em;
+  
+  .comment_body{
+    text-align: right;
+  }
+  
+  .user_name{
+    float: right;
+  }
   
 }

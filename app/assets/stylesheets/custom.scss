@@ -214,3 +214,17 @@ input[type="number"] {
   -moz-appearance:textfield; 
 } 
 
+
+.center-block{
+  width: 90%;
+  display: inline-block;
+  margin: 10px auto;
+	border: 3px solid #f4f3f2;
+	border-radius: 2em;
+	padding: 5px;
+}
+
+.right-block{
+  display: inline-block;
+  margin: 0 0 0 auto;
+}

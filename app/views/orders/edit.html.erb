@@ -1,12 +1,10 @@
-<% provide(:title, 'order edit') %>
-<% provide(:button_text, 'edit my order') %>
 <h1>オーダー編集</h1>
-<% if current_user?(@user) %>
-  <%= link_to "オーダーを削除する", @order, method: :delete,
-                              data: { confirm: "このオーダーを削除しますか？" } %>
-<% end %>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="center-block">
+  <% if current_user?(@user) %>
+    <%= link_to "オーダーを削除する", @order, method: :delete,
+                                data: { confirm: "このオーダーを削除しますか？" } %>
+  <% end %>
     <%= render 'order_form' %>
   </div>
 </div>

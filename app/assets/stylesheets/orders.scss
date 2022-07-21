@@ -300,3 +300,33 @@ ul {
   margin-top: 40px;
   border-bottom: 2px solid #FB8C00;
 }
+
+
+.submit-btn{
+  display: block;
+  width: 400px;
+  font-size: 18px;
+	margin: 10px auto;
+	padding: 20px;
+	line-height: 1;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #E78140;
+	border: 1px solid #E78140;
+	border-radius: 0.3em;
+
+}
+
+.image-field{
+  margin-bottom: 20px;
+}
+
+.input_order_body{
+  color: #575756;
+
+  .form-control{
+    height: 150px;
+    resize: none;
+    
+  }
+}

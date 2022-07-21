@@ -1,11 +1,32 @@
 <% user = User.find(comment.user_id)%>
-<% if user.avatar.present? %>
-  <%= image_tag user.avatar, class: "user_icon" %>
+<% if comment.user_id == current_user.id %>
+  <div class='right-block'>
+    <div class='my_comment'>
+      <% if comment.images.attached? %>
+        <% comment.images.each do |image| %>
+          <%= link_to (image_tag display_image(image)) , image%>
+        <% end %>
+      <% end %>
+      <%= comment.content %>
+    </div>
+    <div class='comment_user'>
+      <% if user.avatar.present? %>
+      <%= image_tag user.avatar, class: "user_icon" %>
+      <% end %>
+      <%= link_to user.name ,user ,class: 'user_name'%>
+    </div>
+  </div>
+<% else %>
+  <div class='other_comment'>
+    <%= link_to user.name ,user %>
+    <% if user.avatar.present? %>
+      <%= image_tag user.avatar, class: "user_icon" %>
+    <% end %>
+    <% if comment.images.attached? %>
+      <% comment.images.each do |image| %>
+        <%= link_to (image_tag display_image(image)) , image%>
+      <% end %>
+    <% end %>
+    <%= comment.content %><br>
+  </div>
 <% end %>
-<%= link_to user.name ,user %>
-<% if comment.images.attached? %>
-  <% comment.images.each do |image| %>
-    <%= link_to (image_tag display_image(image)) , image%>
-  <% end %>
-<% end %>
-<%= comment.content %><br>
