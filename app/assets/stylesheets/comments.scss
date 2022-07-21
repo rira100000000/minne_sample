@@ -40,16 +40,101 @@
   margin: 0 20px 20px 20px;
 }
 
-.my_comment{
-  	border: 1px solid #ddd;
-  	border-radius: 0.3em;
-  
-  .comment_body{
-    text-align: right;
-  }
-  
-  .user_name{
-    float: right;
-  }
-  
+
+/*line風吹き出し左 */
+.balloon-left {
+  width: 100%;
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+
+.balloon-left .faceicon {
+  float: left;
+  margin-right: -90px;
+  width: 80px;
+}
+
+.balloon-left .faceicon img{
+  width: 100%;
+  height: auto;
+}
+
+.balloon-left .chatting {
+  width: 100%;
+
+}
+
+.says-left {
+  display: inline-block;
+  position: relative; 
+  margin: 5px 0 0 105px;
+  padding: 17px 13px;
+  border-radius: 12px;
+  background: #f4f3f2;
+}
+
+.says-left:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 18px; 
+  left: -24px;
+  border: 12px solid transparent;
+  border-right: 12px solid #f4f3f2;
+}
+
+.says-left p {
+  margin: 0;
+  padding: 0;
+}
+
+/*line風吹き出し 右*/
+.balloon-right {
+  width: 100%;
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+
+.balloon-right .faceicon {
+  float: right;
+  margin-left: -90px;
+  width: 80px;
+}
+
+.balloon-right .faceicon img{
+  width: 100%;
+  height: auto;
+}
+
+.balloon-right .chatting {
+  width: 100%;
+}
+
+.says-right {
+  float: right;
+  display: inline-block;
+  position: relative; 
+  margin: 5px 105px 0 0;
+  padding: 17px 13px;
+  border-radius: 12px;
+  background: #cdead9;
+}
+
+.says-right:after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 18px; 
+  right: -24px;
+  border: 12px solid transparent;
+  border-left: 12px solid #cdead9;
+}
+
+.says-right p {
+  margin: 0;
+  padding: 0;
+}
+
+.user_name{
+  white-space: nowrap
 }
