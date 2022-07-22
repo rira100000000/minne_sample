@@ -20,9 +20,7 @@
           <div class='order_label'><%= @user.name %>さんの受注済みオーダー (<%= @confirmed_orders.count %>)</div>
           <ol class="confirmed_orders">
             <% @confirmed_orders.each do |ordar| %>
-              <% id = Confirm.find_by(order_id: 1).id %>
-              <% confirm_url = '/confirms/' + id.to_s + '/detail' %>
-              <%= link_to ordar.title ,ordar %><%= link_to '注文ページへ' , confirm_url %><br>
+              <%= link_to ordar.title ,ordar %><%= link_to '注文ページへ' ,  Confirm.find_by(order_id: ordar.id) %><br>
             <% end %>
           </ol>
           <div class='order_label'><%= @user.name %>さんの提案中のオーダー (<%= @pending_orders.count %>)</div>

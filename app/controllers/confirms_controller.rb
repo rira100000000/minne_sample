@@ -30,10 +30,11 @@ class ConfirmsController < ApplicationController
   def show
     @confirm = Confirm.find(params[:id])
     @order = Order.find(@confirm.order_id)
-    if current_user?(User.find(@order.user_id))
+    @suggestion = Suggestion.find(@confirm.suggestion_id)
+    if current_user?(User.find(@order.user_id)) or current_user?(User.find(@suggestion.user_id))
       @suggestion = Suggestion.find(@confirm.suggestion_id)
       @message =Message.new
-    else
+    else 
       redirect_to my_orders_url
     end
   end

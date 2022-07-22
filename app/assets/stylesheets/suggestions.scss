@@ -20,11 +20,11 @@
 }
 
 .price_form{
-  width: 90%;
+  width: 500px;
 }
 
 .deadline_form{
-  width: 90%;
+  width: 500px;
 }
 
 .file-input{
@@ -118,4 +118,10 @@
 .price{
   color: #575756;
  
+}
+
+.images_field{
+  display: flex;
+  justify-content: start;
+  margin:0;
 }

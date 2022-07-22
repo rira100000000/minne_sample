@@ -35,8 +35,8 @@
       </div>
     </div>
     
-    <div class="images-field clearfix">
-      <div  class="field">
+    <div class="image-field">
+      <div  class="image_label">
         <%= f.label '画像' %><br>
         <%= f.file_field :images, multiple: false, class: "file-input" %>
       </div>
@@ -54,7 +54,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="btn-block">
+    <div class="btn-block"> 
       <%= f.submit "提案送信",class: "suggestion-btn" %>
     </div>
   </div>

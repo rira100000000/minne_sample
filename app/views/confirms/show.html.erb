@@ -27,25 +27,38 @@
     <div class='suggestion_body'><%= @suggestion.body %></div>
     <div class='price'>価格:<%= @suggestion.price %>円</div>
     <div class='deadline'>受注から発送までの目安:<%= @suggestion.deadline %>日後</div>
-      
-    <div class='address-block'>
-      <%= form_with(model: @confirm, local: true) do |f| %>
-        <h2>配送先情報</h2>
-        <%= f.label '受取人名' %>
-        <%= f.text_field :receiver_name, class: 'form-control' %>
+    
+    <% if current_user.id == @order.user_id %>  
+      <div class='address-block'>
+        <%= form_with(model: @confirm, local: true) do |f| %>
+          <h2>配送先情報</h2>
+          <%= f.label '受取人名' %>
+          <%= f.text_field :receiver_name, class: 'form-control' %>
+          
+          <%= f.label :'郵便番号' %>
+          <%= f.text_field :postcode, class: 'form-control' %>
+          
+          <%= f.label '住所' %>
+          <%= f.text_field :address, class: 'form-control' %>
+          
+          <%= f.label 'TEL' %>
+          <%= f.text_field :tel, class: 'form-control' %>
         
-        <%= f.label :'郵便番号' %>
-        <%= f.text_field :postcode, class: 'form-control' %>
-        
-        <%= f.label '住所' %>
-        <%= f.text_field :address, class: 'form-control' %>
-        
-        <%= f.label 'TEL' %>
-        <%= f.text_field :tel, class: 'form-control' %>
-      
-        <%= f.submit '配送先情報を更新する', class: "address-btn" %>
-      <% end %>
-    </div>
+          <%= f.submit '配送先情報を更新する', class: "address-btn" %>
+        <% end %>
+      </div>
+    <% elsif current_user.id == @suggestion.user_id %>
+      <div class='address-info'>
+        <div class='shipping_label'>配送先: </div>
+        <div class='shipping'>
+          <%= @confirm.receiver_name %> <br>
+          〒<%= @confirm.postcode %> <br>
+          <%= @confirm.address %> <br>
+          TEL:<%= @confirm.tel %>
+        </div>
+      </div>
+    <% end %>
+    
     <div class='message_area'>
       <%= User.find(@suggestion.user_id).name %>さんとのメッセージ
       <div class='comment_area'>
