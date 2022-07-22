@@ -4,6 +4,7 @@
   .form-control{
     resize: none;
     height: 150px;
+    background: #F4F3F2;
 
   }
 }
@@ -29,6 +30,8 @@
 }
 
 .comment_area{
+    overflow-y: scroll;
+    max-height: 400px;
     width: 90%;
     margin: 20px;
   	border: 1px solid #ddd;
@@ -71,6 +74,7 @@
   padding: 17px 13px;
   border-radius: 12px;
   background: #f4f3f2;
+  word-break: break-all;
 }
 
 .says-left:after {
@@ -118,6 +122,7 @@
   padding: 17px 13px;
   border-radius: 12px;
   background: #cdead9;
+  word-break: break-all;
 }
 
 .says-right:after {

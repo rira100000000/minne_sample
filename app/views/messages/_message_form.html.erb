@@ -2,8 +2,7 @@
 <%= form_with(model: @message, local: true) do |f| %>
   <%= render 'shared/error_messages', object: @message %>
   <%= f.hidden_field :confirm_id, value: @confirm.id %>
-  <div class='body_form' %>
-    <%= f.label 'メッセージ' %>
+  <div class='comment_form' %>
     <%= f.text_area :body, class: 'form-control', placeholder: "メッセージを入力してください" %>
     </div>
     
@@ -27,6 +26,6 @@
     <% end %>
   </div>
 
-  <%= f.submit '送信', class: "btn btn-primary" %>
+  <%= f.submit '送信', class: "comment-btn" %>
 <% end %>
 

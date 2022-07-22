@@ -1,11 +1,40 @@
 <% user = User.find(message.user_id)%>
-<% if user.avatar.present? %>
-  <%= image_tag user.avatar, class: "user_icon" %>
+<% if message.user_id == current_user.id %>
+  <div class="balloon-right">
+    <div class="faceicon">
+      <% if user.avatar.present? %>
+        <%= image_tag user.avatar, class: "user_icon" %>
+      <% end %>
+    </div>
+    <div class="chatting">
+      <div class="says-right">
+         <% if message.images.attached? %>
+          <% message.images.each do |image| %>
+            <%= link_to (image_tag display_image(image)) , image %>
+          <% end %>
+        <% end %>
+        <%= message.body %>
+      </div>
+    </div>
+</div>
+<% else %>
+  <div class="balloon-left">
+    <div class="faceicon">
+      <% if user.avatar.present? %>
+        <%= image_tag user.avatar, class: "user_icon" %>
+      <% end %>
+      <%= link_to user.name ,user ,class: 'user_name'%>
+
+    </div>
+    <div class="chatting">
+      <div class="says-left">
+         <% if message.images.attached? %>
+          <% message.images.each do |image| %>
+            <%= link_to (image_tag display_image(image)) , image %>
+          <% end %>
+        <% end %>
+        <%= message.body %>
+      </div>
+    </div>
+  </div>
 <% end %>
-<%= link_to user.name ,user %>
-<% if message.images.attached? %>
-  <% message.images.each do |image| %>
-    <%= link_to (image_tag display_image(image)) , image%>
-  <% end %>
-<% end %>
-<%= message.body %><br>
