@@ -3,18 +3,24 @@
     <div class='back_link'>
       <%= link_to @order.title ,@order %>
     </div>
-    
-    <% if logged_in? && @suggestion.user_id == current_user.id && @order.status == 'pending'%>
-      <%= link_to '提案を編集する', edit_suggestion_path %>
-    <% end %>
-    
+
     <div class='title_area'>
         <% user = User.find(@suggestion.user_id)%>
-        <% if user.avatar.present? %>
-          <div class='user_data'>
-            <%= link_to image_tag(user.avatar, class: "user_icon") , user %>
-            <%= link_to user.name,user ,class: "user_icon"%>
-          </div>
+        <% if current_user.id == @order.user_id %>
+          <% if user.avatar.present? %>
+            <div class='user_data'>
+              <%= link_to image_tag(user.avatar, class: "user_icon") , user %>
+              <%= link_to user.name,user ,class: "user_icon"%>
+            </div>
+          <% end %>
+        <% elsif current_user.id == @suggestion.user_id %>
+          <% if user.avatar.present? %>
+            <div class='user_data'>
+              <% reciever = User.find(@order.user_id) %>
+              <%= link_to image_tag(reciever.avatar, class: "user_icon") , reciever %>
+              <%= link_to reciever.name,reciever ,class: "user_icon"%>
+            </div>
+          <% end %>
         <% end %>
         <div class='title'> <%= @suggestion.title %> </div>
       <span class='date'>投稿<%= @order.created_at.strftime('%Y/%m/%d') %></span>

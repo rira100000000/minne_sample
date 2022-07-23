@@ -50,11 +50,15 @@
             <%= f.submit "提案の内容でオーダーを確定する",class: "order-submit-btn" %>
         </div>
       <% end %>
-    <% end %> 
+    <% else %>
+       <%= link_to('注文の詳細を見る' , Confirm.find_by(order_id: @order.id),class: 'order_detail')%><br>
+    <% end %>
     コメント
     <div class='comment_area'>
       <%= render @suggestion.comments %>
     </div>
-    <%= render '/comments/comment_form' %>
+    <% if @order.status == 'pending' %>
+      <%= render '/comments/comment_form' %>
+    <% end %>
   </div>
 </div>

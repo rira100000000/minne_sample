@@ -33,7 +33,8 @@
     
     <div class='suggestions'>提案一覧</div>
     <% @order.suggestions.each do |suggestion| %>
-      <%= link_to image_tag(User.find(suggestion.user_id).avatar, class: "user_icon") %><%= link_to suggestion.title, suggestion %><br>
+      <% suggest_user =User.find(suggestion.user_id) %>
+      <%= link_to image_tag(suggest_user.avatar, class: "user_icon"),suggest_user %><%= link_to suggestion.title, suggestion %><br>
     <% end %>
     
     <% if @order.status == 'pending' %>

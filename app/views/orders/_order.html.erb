@@ -15,10 +15,15 @@
    </div>
  </div>
  <% user = User.find(order.user_id) %>
+ <% confirm =Confirm.find_by(order_id: order.id) %>
  <div class='right_block'>
     <div class='order_detail_link'>
-     <% confirm =Confirm.find_by(order_id: order.id) %>
-     <%= link_to('注文の詳細を見る' , Confirm.find_by(order_id: order.id),class: 'order_detail') if confirm.present? %>
+     <% if logged_in? && confirm.present? %>
+      <% suggestion = Suggestion.find_by(order_id: order.id) %>
+      <% if current_user.id == order.user_id or current_user.id == suggestion.user_id %>
+       <%= link_to('注文の詳細を見る' , Confirm.find_by(order_id: order.id),class: 'order_detail') if confirm.present? %>
+      <% end %>
+     <% end %>
    </div>
    <div class='user_info'>
       <div class='user_info_icon'>
