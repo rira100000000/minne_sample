@@ -1,8 +1,32 @@
-<li>
-  <%= user.name, user %>
-  <% if current_user.admin? && !current_user?(user) %>
-    | <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  <% end %>
-  
-</li>
+<div class='order_index'>
+ <div class='order_status'>
+   <% if order.status =='pending' %>
+    <span class='pending'>受付中</span>
+   <% else%>
+    <span class='confirmed'>発注済</span>
+   <% end %>
+ </div>
+ <div class='order_index_mid'>
+   <%= link_to order.title,order, class: "order_link" %>
+   <div class="tags">
+     <% order.tags.each do |tag|%>
+       <span class="tag"><%= link_to tag.name ,tags_show_path(tag_id: tag.id),class: 'tag_one' %> </span>
+     <% end %>
+   </div>
+ </div>
+ <% user = User.find(order.user_id) %>
+ <div class='right_block'>
+    <div class='order_detail_link'>
+     <% confirm =Confirm.find_by(order_id: order.id) %>
+     <%= link_to('注文の詳細を見る' , Confirm.find_by(order_id: order.id),class: 'order_detail') if confirm.present? %>
+   </div>
+   <div class='user_info'>
+      <div class='user_info_icon'>
+        <% if user.avatar.present? %>
+         <%= link_to(image_tag(user.avatar, class: "user_icon") ,user) %>
+        <% end %>
+      </div>
+      <div class='user_info_name'><%= link_to user.name,user %></div>
+   </div>
+ </div>
+</div>

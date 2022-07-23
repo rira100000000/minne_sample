@@ -1,32 +1,7 @@
 <div class='tags'><%= render 'shared/tag_index' %></div>
 <h2> 新着オーダー </h2>
-<div class='order_index_flame'>
+<div class='order_index_frame'>
  <% @orders.each do |order| %>
-   <div class='order_index'>
-     <div class='order_status'>
-       <% if order.status =='pending' %>
-        <span class='pending'>受付中</span>
-       <% else%>
-        <span class='confirmed'>発注済</span>
-       <% end %>
-     </div>
-     <div class='order_index_mid'>
-       <%= link_to order.title,order, class: "order_link" %>
-       <div class="tags">
-         <% order.tags.each do |tag|%>
-           <span class="tag"><%= link_to tag.name ,tags_show_path(tag_id: tag.id),class: 'tag_one' %> </span>
-         <% end %>
-       </div>
-     </div>
-     <% user = User.find(order.user_id) %>
-     <div class='user_info'>
-      <div class='user_info_icon'>
-        <% if user.avatar.present? %>
-         <%= link_to(image_tag(user.avatar, class: "user_icon") ,user) %>
-        <% end %>
-      </div>
-      <div class='user_info_name'><%= link_to user.name,user %></div>
-     </div>
-   </div>
+  <%= render order %>
  <% end %>
 </div> 
