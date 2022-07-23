@@ -11,44 +11,39 @@
       <li><a href="#make" class='make_tab'>作る</a></li>
       <li><a href="#order" class='order_tab'>依頼する</a></li>
     </ul>
-
   <% if current_user?(@user) %>
-  <div class='order_index_frame'>
+   <div id="make" class="area">
+     <div class='order_index_frame'>
+       <div class='order_label'><%= @user.name %>さんの受注済みオーダー (<%= @confirmed_orders.count %>)</div>
+         <ol class="confirmed_orders">
+           <% @confirmed_orders.each do |ordar| %>
+             <%= render ordar %>
+           <% end %>
+         </ol>
+       <div class='order_label'><%= @user.name %>さんの提案中のオーダー (<%= @pending_orders.count %>)</div>
+       <ol class="pending_orders">
+        <% @pending_orders.each do |ordar| %>
+         <%= render ordar %>
+        <% end %>
+       </ol>
+     </div>
+   </div>
 
-     <div id="make" class="area">
-
-          <div class='order_label'><%= @user.name %>さんの受注済みオーダー (<%= @confirmed_orders.count %>)</div>
-          <ol class="confirmed_orders">
-            <% @confirmed_orders.each do |ordar| %>
-              <%= render ordar %>
-
-            <% end %>
-          </ol>
-          <div class='order_label'><%= @user.name %>さんの提案中のオーダー (<%= @pending_orders.count %>)</div>
-          <ol class="pending_orders">
-            <% @pending_orders.each do |ordar| %>
-              <%= link_to ordar.title ,ordar %><br>
-            <% end %>
-          </ol>
-
-      </div>
-    </div>
-    <div id="order" class="area">      
-      <div class ='label_and_orders'>
-          <div class='order_label'> <%= @user.name %>さんの発注済みオーダー (<%= @my_confirmed_orders.count %>)</div>
-          <ol class="my_confirmed_orders">
-            <% @my_confirmed_orders.each do |ordar| %>
-              <%= link_to ordar.title ,ordar %><%= link_to '注文ページへ' , Confirm.find_by(order_id: ordar.id) %><br>
-            <% end %>
-          </ol>
-          
-          <div class='order_label'> <%= @user.name %>さんの未発注オーダー (<%= @my_unconfirmed_orders.count %>)</div>
-          <ol class="my_unconfirmed_orders">
-            <% @my_unconfirmed_orders.each do |ordar| %>
-              <%= link_to ordar.title ,ordar %><br>
-            <% end %>
-          </ol>
-    </div>
-
-</div>
+   <div id="order" class="area">      
+     <div class='order_index_frame'>
+       <div class='order_label'> <%= @user.name %>さんの発注済みオーダー (<%= @my_confirmed_orders.count %>)</div>
+       <ol class="my_confirmed_orders">
+         <% @my_confirmed_orders.each do |ordar| %>
+           <%= render ordar %>
+           <% end %>
+       </ol>
+       <div class='order_label'> <%= @user.name %>さんの未発注オーダー (<%= @my_unconfirmed_orders.count %>)</div>
+       <ol class="my_unconfirmed_orders">
+         <% @my_unconfirmed_orders.each do |ordar| %>
+           <%= render ordar %>
+         <% end %>
+       </ol>
+     </div>
+   </div>
   <% end %>
+</div>
