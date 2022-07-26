@@ -8,6 +8,8 @@ function get_image(e,image_source){
         return Uploader.upload(file)});
       x.then(function(data){
         console.log('called 6');
+        console.log('called 7');
+        console.log('data.image_id=' + data.image_id);
         return previewImage(file, data.image_id);
     });
   });
@@ -105,19 +107,19 @@ $(document).ready(function() {
 $(document).ready(function() {
   console.log('called 1');
   $('#order_images').on('change',function(e){
-    console.log('called 2');
+    console.log('order_images');
     get_image(e,'#order_images');
   });
   $('#suggestion_images').on('change',function(e){
-    console.log('called 3')
+    console.log('suggestion_images');
     get_image(e,'#suggestion_images');
   });
   $('#comment_images').on('change',function(e){
-    console.log('called 3')
+    console.log('comment_images');
     get_image(e,'#comment_images');
   });
   $('#message_images').on('change',function(e){
-    console.log('called 3')
+    console.log('message_images');
     get_image(e,'#message_images');
   });
   
