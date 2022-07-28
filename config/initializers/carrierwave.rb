@@ -13,3 +13,4 @@ CarrierWave.configure do |config|
     region: ENV['AWS_DEFAULT_REGION'],
     path_style: true
   }
+end
