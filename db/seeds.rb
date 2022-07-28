@@ -164,7 +164,8 @@ Comment.create!(id: 4,
                 
 def reset_id(tablename)
   connection = ActiveRecord::Base.connection()
-  connection.execute( "ALTER SEQUENCE #{tablename}_id_seq RESTART WITH select max(id) from #{tablename} INCREMENT BY 1;")
+  last_id = connection.execute("select max(id) from #{tablename}")
+  connection.execute( "ALTER SEQUENCE #{tablename}_id_seq RESTART WITH #{last_id} INCREMENT BY 1;")
 end
 
 reset_id('orders')
