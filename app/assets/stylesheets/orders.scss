@@ -143,8 +143,8 @@
 .order_index_mid{
   display: flex;
   flex-flow: column;
-  width: 70%;
- 
+  width: 100%;
+
   .order_link{
     margin: 30px 0 10px 10px;
   font-size: 16px;
@@ -278,11 +278,14 @@ ul {
 }
 
 .right_block{
+  
+  width: 100%;
   display:flex;
   justify-content:flex-end;
   flex-flow: column;
  .user_info{
      display: flex;
+     justify-content:flex-end;
 
    .user_info_icon{
      margin-bottom: 1px;
@@ -342,12 +345,15 @@ ul {
 }
 
 .order_detail_link{
+   display: flex;
   margin-top: 20px;
+  justify-content:flex-end;
 }
 
 
 .order_detail{
   color: #FB8C00 !important ;
+  
   background: #FFFFFF;
   border: 1px solid #FB8C00;
   border-radius: 0.3em;
