@@ -160,7 +160,12 @@ Comment.create!(id: 4,
                 user_id: 1, 
                 suggestion_id: 1
                 )
-
+                
+                
+def reset_id(tablename)
+  connection = ActiveRecord::Base.connection()
+  connection.execute("ALTER SEQUENCE #{tablename}_id_seq RESTART WITH (select max(id) from #{tablename}) INCREMENT BY 1;")
+end
 
 reset_id('orders')
 reset_id('suggestions')
@@ -170,7 +175,3 @@ reset_id('order_tags')
 reset_id('tags')
 
 
-def reset_id(tablename)
-  connection = ActiveRecord::Base.connection()
-  connection.execute("ALTER SEQUENCE #{tablename}_id_seq RESTART WITH (select max(id) from #{tablename}) INCREMENT BY 1;")
-end
