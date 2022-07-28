@@ -326,10 +326,15 @@ ul {
   margin-bottom: 20px;
 }
 
+.order_images-field{
+  margin: 0;
+}
+
 .input_order_body{
   color: #575756;
 
   .form-control{
+    margin: 0;
     height: 150px;
     resize: none;
     
