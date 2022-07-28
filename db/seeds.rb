@@ -166,11 +166,11 @@ reset_id('orders')
 reset_id('suggestions')
 reset_id('comments')
 reset_id('confirms')
-reset_id('ordertags')
+reset_id('order_tags')
 reset_id('tags')
 
 
- def reset_id(tablename)
+def reset_id(tablename)
   connection = ActiveRecord::Base.connection()
-  connection.execute("select setval('#{tablename}_id_seq',(select max(id) from #{tablename}))")
+  connection.execute("ALTER SEQUENCE #{tablename}_id_seq RESTART WITH (select max(id) from #{tablename}) INCREMENT BY 1;")
 end
