@@ -162,7 +162,15 @@ Comment.create!(id: 4,
                 )
 
 
+reset_id('orders')
+reset_id('suggestions')
+reset_id('comments')
+reset_id('confirms')
+reset_id('ordertags')
+reset_id('tags')
 
 
-
-
+ def reset_id(tablename)
+  connection = ActiveRecord::Base.connection()
+  connection.execute("select setval('#{tablename}_id_seq',(select max(id) from #{tablename}))")
+end
