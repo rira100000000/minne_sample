@@ -44,4 +44,9 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
   
+  def sample_img(img_name)
+    s3_object = Aws::S3::Client.new.get_object(bucket: 'ruby-sample-app', key: img_name )
+    Base64.encode64(s3_object.body.read)
+  end
+  
 end

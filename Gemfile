@@ -19,7 +19,7 @@ gem 'net-pop'
 gem 'net-smtp'
 gem 'psych', '~> 3.1'
 gem 'dotenv-rails'
-
+gem "aws-sdk-s3"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.0.5'
 # Use sqlite3 as the database for Active Record
@@ -78,5 +78,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :production do
   gem 'pg'
   gem 'fog-aws'
-  gem "aws-sdk-s3", require: false 
+  
 end
