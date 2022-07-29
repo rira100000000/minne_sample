@@ -1,12 +1,9 @@
 <h2> タグ:<%= @tag.name%>で絞り込み中 </h2>
-<% @orders.each do |order| %>
-  <%= link_to order.title,order %>
-  <i class="fas fa-tag"></i>
-  <% order.tags.each do |tag| %>
-    <i class='tag'><%= link_to tag.name, tags_show_path(tag_id: tag.id),class: 'tag_one' %></i>
-  <% end %>
-  <br>
-<% end %>
+<div class='order_index_frame'>
+ <% @orders.each do |order| %>
+  <%= render order %>
+ <% end %>
+</div> 
 
  
  
