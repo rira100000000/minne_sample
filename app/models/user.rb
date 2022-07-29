@@ -13,7 +13,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  validates :profile, length: { maximum: 300 }
+  validates :profile, length: { maximum: 10000 }
   has_one_attached :avatar
   
 # 渡された文字列のハッシュ値を返す

@@ -1,17 +1,31 @@
 <% provide(@user) %>
-<div class='content'>
-  <div class='userbox'>
-    <div class='userbox__top'>
-      <div class='userbox__top__left'>
-        <div class='userbox__top__left__icon'>
-          <% if @avatar.present? %>
-            <%= image_tag @avatar, class: "user_icon" %>
-          <% end %>
+<div class='row'>
+  <div class='center-block'>
+    <div class='prof-all'>
+      <div class="prof-top">
+        <% if @avatar.present? %>
+          <%= image_tag @avatar, class: "user_icon" %>
+        <% end %>
+        <%= @user.name %>
+      </div>
+      <div class="prof-mid">
+        <div class="prof-left">
+          <div class='user_name'><%= @user.name %></div>
+          <div class= follower>お気に入りされている作品 <span class='follower_number'>1000</span></div>
+          <div class= follower>フォロワーしている <span class='follower_number'>1000</span></div>
+          <div class= follower>フォローされている <span class='follower_number'>1000</span></div>
+        </div>
+        
+        <div class="prof-center">
+          <div class='profile'><%= safe_join(@user.profile.split("\n"),tag(:br)) %></div>
+        </div>
+        <div class="prof-right">
+          <%= image_tag 'https://ruby-sample-app.s3.ap-northeast-1.amazonaws.com/5e4aa40946575dd749b0f679b046e75145682c42.jpg' ,class: "prof_img"  %>
+          <%= image_tag 'https://ruby-sample-app.s3.ap-northeast-1.amazonaws.com/5e4aa40946575dd749b0f679b046e75145682c42.jpg' ,class: "prof_img"  %>
+          
+          
         </div>
       </div>
     </div>
   </div>
 </div>
-
-<div class='user_name'><%= @user.name %></div>
-<div class='profile'><%= @user.profile %></div>

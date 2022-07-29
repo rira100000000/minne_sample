@@ -38,16 +38,71 @@
   }
 }
 
-  .btn-create{
-    display: block;
-    margin: 20px auto;
-    text-align: center;
-    width: 200px;
-    padding: .6em;
-  	line-height: 1;
-  	text-decoration: none;
-  	color: #FFFFFF;
-  	background-color: #E78140;
-  	border: 1px solid #E78140;
+.btn-create{
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  width: 200px;
+  padding: .6em;
+	line-height: 1;
+	text-decoration: none;
+	color: #FFFFFF;
+	background-color: #E78140;
+	border: 1px solid #E78140;
+	border-radius: 0.3em;
+}
+
+.prof-all{
+  display: block;
+}
+
+.prof-top{
+  font-size: 50px;
+  font-weight: bold;
+  margin: 0 auto;
+  width: 800px;
+}
+
+.prof-mid{
+  width: 70%;
+  display:flex;
+  margin: 0 auto;
+  justify-content:space-between;
+  .prof-left{
+      margin: 10px;
+
+    display:flex;
+    flex-flow: column;
+    width: 180px;
+    height: 200px;
+    background-color: #F0F0F0;
+  	border: 1px solid #F0F0F0;
   	border-radius: 0.3em;
+  	
+  	.follower{
+  	  font-size: 11px;
+  	  
+  	 .follower_number{
+    	  font-size: 16px;
+    	  font-weight: bold;
+    	  color: #6C5651;
+  	 }
+  	}
   }
+  .prof-center{
+      margin: 10px;
+
+    width: 500px;
+  }
+  .prof-right{
+    display:flex;
+    flex-flow: column;
+    .prof_img{
+      margin: 10px;
+      width: 285px;
+      height: 210px;
+    }
+  }
+}
+  
+  
