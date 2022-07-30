@@ -16,6 +16,7 @@ class UsersController < ApplicationController
     @suggestions = Suggestion.where user_id: @user.id
     @avatar = @user.avatar
     @profile = @user.profile
+
     
     #提案中の依頼から既に受注済み依頼を除く処理
     order_ids =[]

@@ -17,7 +17,7 @@
         </div>
         
         <div class="prof-center">
-          <div class='profile'><%= safe_join(@user.profile.split("\n"),tag(:br)) %></div>
+          <div class='profile'><%= safe_join(@user.profile.split("\n"),tag(:br))  if @user.profile %></div>
         </div>
         <div class="prof-right">
           <img src="data:image/png;base64,<%= @user.sample_img('eda1505bd04c7684d406ef4321388902a72256f0.jpg') %>" class="prof_img"/>
