@@ -30,7 +30,7 @@
       
     
     
-    <% if @order.status == 'pending' && @order.user_id == current_user.id %>
+    <% if logged_in? && @order.status == 'pending' && @order.user_id == current_user.id %>
       <%= form_with(model: @confirm, local: true) do |f| %>
         <% if @confirm.errors.any? %>
           <div id="error_explanation">
@@ -50,7 +50,7 @@
             <%= f.submit "提案の内容でオーダーを確定する",class: "order-submit-btn" %>
         </div>
       <% end %>
-    <% elsif @order.status == 'confirmed' && (@order.user_id == current_user.id or @suggestion.user_id == current_user.id) %>
+    <% elsif logged_in? && @order.status == 'confirmed' && (@order.user_id == current_user.id or @suggestion.user_id == current_user.id) %>
        <%= link_to('注文の詳細を見る' , Confirm.find_by(order_id: @order.id),class: 'order_detail')%><br>
     <% end %>
     コメント

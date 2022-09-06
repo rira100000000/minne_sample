@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get '/new', to: 'orders#new'
   get 'portfolio/home'
   get 'users/index'
-  root 'portfolio#home'
+  root 'orders#index'
   get  '/signup',  to: 'users#new'
   resources :users
   get    '/login',   to: 'sessions#new'
