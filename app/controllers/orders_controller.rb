@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
   before_action :admin_user,     only: :destroy
   before_action :pending_order,  only: [:edit , :update,:destroy]
   
+  protect_from_forgery :except => [:destroy]
+  
   def index
     @orders = Order.paginate(page: params[:page])
     @tag_list=Tag.all
