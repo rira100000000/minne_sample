@@ -2,7 +2,7 @@
 <div class="row">
   <div class="center-block">
   <% if current_user?(@user) %>
-    <%= button_to 'オーダーを削除する', @order, :method => :delete,
+    <%= link_to "オーダーを削除する", @order, method: :delete,
                                 data: { confirm: "このオーダーを削除しますか？" } %>
   <% end %>
     <%= render 'order_form' %>
