@@ -50,6 +50,8 @@ class OrdersController < ApplicationController
   def update
      @order = Order.find(params[:id])
     if @order.update(order_params)
+      tag_list=params[:order][:name].split(',')
+      @order.save_tag(tag_list)
       flash[:success] = "オーダーを更新しました"
       redirect_to @order
     else
