@@ -152,7 +152,7 @@ Comment.create!(id: 2,
 Comment.create!(id: 3, 
                 content: 'ピンクがご希望ということでしたので色見本用意いたしました。ご覧ください。', 
                 user_id: 3, 
-                suggestion_id: 1
+                suggestion_id: 2
                 )
                 
 Comment.create!(id: 4, 
