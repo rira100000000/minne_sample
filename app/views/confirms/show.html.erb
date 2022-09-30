@@ -30,7 +30,7 @@
         <%= link_to (image_tag display_image(image)) , image %>
       <% end %>
     <% end %>
-    <div class='suggestion_body'><%= @suggestion.body %></div>
+    <div class='suggestion_body'><%= safe_join(@suggestion.body.split("\n"),tag(:br)) %></div>
     <div class='price'>価格:<%= @suggestion.price %>円</div>
     <div class='deadline'>受注から発送までの目安:<%= @suggestion.deadline %>日後</div>
     
