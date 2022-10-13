@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/new', to: 'orders#new'
   get 'portfolio/home'
   get 'users/index'
+  get 'order_sort', to: 'checklists#show'
   root 'orders#index'
   get  '/signup',  to: 'users#new'
   resources :users

@@ -7,10 +7,12 @@
         <% if logged_in? %>
           <li class="nav-item"><%= link_to "TOP", '/orders' , class: 'nav-link'%> </li>
           <li class="nav-item"><%= link_to "MY PAGE", '/my_orders' , class: 'nav-link'%> </li>
+          <li class="nav-item"><%= link_to "PRINT", order_sort_path, class: 'nav-link' %> </li>
           <li class="nav-item"><%= link_to "SETTING", edit_user_path(current_user), class: 'nav-link' %> </li>
           <li class="nav-item"><%= link_to "LOG OUT", logout_path, method: :delete , class: 'nav-link'%> </li>
         <% else %>
           <li class="nav-item"><%= link_to "TOP", '/orders' , class: 'nav-link'%> </li>
+          <li class="nav-item"><%= link_to "PRINT", order_sort_path, class: 'nav-link' %> </li>
           <li class="nav-item"><%= link_to "LOG IN", '/login' , class: 'nav-link'%> </li>
         <% end %>
       </ul>

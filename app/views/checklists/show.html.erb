@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="center-block">
+    <section class="section">
+      <h1 class="title">注文管理</h1>
+      <div class="columns">
+        <div class="column">
+          <article class="message is-primary">
+            <div class="message-body">
+              <span id="message">ファイルを選択してください。</span>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column">
+          <input id="csv_file" type="file">
+        </div>
+      </div>
+      <div class="checkboxs">
+        <label><input type="checkbox" id="order_id" checked>注文ID</label>
+        <label><input type="checkbox" id="order_day">注文日</label>
+        <label><input type="checkbox" id="order_status" checked>注文状況</label>
+        <label><input type="checkbox" id="payment_type">支払方法</label>
+        <label><input type="checkbox" id="payment_day" checked>入金確認日</label>
+        <label><input type="checkbox" id="send_day">発送日</label>
+        <label><input type="checkbox" id="item_name" checked>作品名</label>
+        <label><input type="checkbox" id="send_type" checked>配送方法</label>
+        <label><input type="checkbox" id="send_area" checked>配送エリア</label>
+        <label><input type="checkbox" id="dead_line">発送までの目安</label>
+        <label><input type="checkbox" id="item_price">販売価格</label>
+        <label><input type="checkbox" id="quantity" checked>数量</label>
+        <label><input type="checkbox" id="item_total">小計</label>
+        <label><input type="checkbox" id="note" checked>備考</label>
+        <label><input type="checkbox" id="total_price">注文の販売価格</label>
+        <label><input type="checkbox" id="send_price">注文の送料</label>
+        <label><input type="checkbox" id="all_total_price">注文の合計</label>
+        <label><input type="checkbox" id="user_id" checked>注文者のユーザーID</label>
+        <label><input type="checkbox" id="nickname">注文者のニックネーム</label>
+        <label><input type="checkbox" id="use_name">注文者の氏名</label>
+        <label><input type="checkbox" id="user_tel">注文者の電話番号</label>
+        <label><input type="checkbox" id="address1" checked>配送先の住所</label>
+        <label><input type="checkbox" id="sending_name" checked>配送先の氏名</label>
+        <label><input type="checkbox" id="sending_tel" checked>配送先の電話番号</label>
+        <label><input type="checkbox" id="pending" checked>発送準備中だけ表示する</label>
+        <!--<label><input type="checkbox" id="item_id">作品管理番号</th>　-->
+      </div>
+      <button class="print-btn">
+      　<span>印刷する</span>
+      </button>
+      <div class="columns">
+        <div class="column" style="overflow-y: scroll;">
+          <div class="print-area">
+            <table id="csv_data_table" class="table is-bordered">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<%= javascript_pack_tag 'table_disp',media: 'all'%>
+<style type="text/css" id= "css_page">
+  @page { size: landscape; }
+</style>

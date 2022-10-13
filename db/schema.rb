@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_14_023045) do
+ActiveRecord::Schema.define(version: 2022_10_11_035119) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,38 @@ ActiveRecord::Schema.define(version: 2022_07_14_023045) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "checklists", force: :cascade do |t|
+    t.integer "order_id"
+    t.string "order_day"
+    t.string "order_status"
+    t.string "payment_type"
+    t.string "payment_day"
+    t.string "send_day"
+    t.string "item_name"
+    t.string "send_type"
+    t.string "send_area"
+    t.string "dead_line"
+    t.integer "item_price"
+    t.integer "quantity"
+    t.integer "item_total_price"
+    t.string "note"
+    t.integer "total_price"
+    t.integer "send_price"
+    t.integer "all_total_price"
+    t.string "user_id"
+    t.string "nickname"
+    t.string "use_name"
+    t.string "user_tel"
+    t.string "post_number"
+    t.string "address1"
+    t.string "address2"
+    t.string "sending_name"
+    t.string "sending_tel"
+    t.string "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
